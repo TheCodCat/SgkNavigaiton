@@ -1,0 +1,137 @@
+{
+    "name": "InputSystem",
+    "maps": [
+        {
+            "name": "TouchScreen",
+            "id": "e335ff2e-9345-4f42-b83a-517aaad8794e",
+            "actions": [
+                {
+                    "name": "PrimaryTouch",
+                    "type": "PassThrough",
+                    "id": "df99dc1f-dc65-4bca-b26c-3065a76b1b35",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ZoomTouch",
+                    "type": "Value",
+                    "id": "4ec4dcb5-1e6b-4fcd-887c-6de479fa67e7",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchCount",
+                    "type": "PassThrough",
+                    "id": "df87f0cc-e899-4ab2-a6dc-a12294f9277c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EtageMinus",
+                    "type": "Button",
+                    "id": "ef86f2e8-2a28-4cca-92d4-7c79bbbb6f8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EtagePlus",
+                    "type": "Button",
+                    "id": "c61dbb81-c9e4-4525-a2d3-449be0c95bf7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d43febcb-efd2-48e5-aa3a-6107fcc18542",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touthscreen",
+                    "action": "PrimaryTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90d993a6-8a35-42be-843c-f7f4163138db",
+                    "path": "<Touchscreen>/touch1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a583e190-3166-4c66-9da2-11173bc4aa49",
+                    "path": "<Touchscreen>/touch*/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touthscreen",
+                    "action": "TouchCount",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76559d6e-40d1-40ab-940d-42e4764cbd28",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EtageMinus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a59e15f7-a504-4c73-9e34-54bdbcecbb5b",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "MultiTap(tapCount=3)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EtagePlus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Desktop",
+            "bindingGroup": "Desktop",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Touthscreen",
+            "bindingGroup": "Touthscreen",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
