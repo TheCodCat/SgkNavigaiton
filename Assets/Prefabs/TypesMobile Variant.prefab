@@ -88,49 +88,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1214744131571671319, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 821785091667262787, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 821785091667262787, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 821785091667262787, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 1856694342968611071, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
       propertyPath: m_Name
       value: TypesMobile Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 1856694342968611071, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620681860732612159, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620681860732612159, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_FontData.m_RichText
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ClearNavigation
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Navigation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768340167760711659, guid: 06c6f2ad81518664e8a521478c360511, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
