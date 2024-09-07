@@ -524,7 +524,7 @@ MonoBehaviour:
     Etage: 1
     PositionKabinet: {fileID: 1172254492512185553}
   - NameKabinet: 506
-    Etage: 2
+    Etage: 1
     PositionKabinet: {fileID: 1378742698107238143}
   - NameKabinet: 507
     Etage: 1
