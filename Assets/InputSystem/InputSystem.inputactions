@@ -31,24 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "EtageMinus",
-                    "type": "Button",
-                    "id": "ef86f2e8-2a28-4cca-92d4-7c79bbbb6f8a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EtagePlus",
-                    "type": "Button",
-                    "id": "c61dbb81-c9e4-4525-a2d3-449be0c95bf7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -82,28 +64,6 @@
                     "processors": "",
                     "groups": "Touthscreen",
                     "action": "TouchCount",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "76559d6e-40d1-40ab-940d-42e4764cbd28",
-                    "path": "<Touchscreen>/primaryTouch/press",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EtageMinus",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a59e15f7-a504-4c73-9e34-54bdbcecbb5b",
-                    "path": "<Touchscreen>/primaryTouch/press",
-                    "interactions": "MultiTap(tapCount=3)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EtagePlus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

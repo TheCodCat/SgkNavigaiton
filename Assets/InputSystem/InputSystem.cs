@@ -53,24 +53,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EtageMinus"",
-                    ""type"": ""Button"",
-                    ""id"": ""ef86f2e8-2a28-4cca-92d4-7c79bbbb6f8a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EtagePlus"",
-                    ""type"": ""Button"",
-                    ""id"": ""c61dbb81-c9e4-4525-a2d3-449be0c95bf7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -104,28 +86,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Touthscreen"",
                     ""action"": ""TouchCount"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""76559d6e-40d1-40ab-940d-42e4764cbd28"",
-                    ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""MultiTap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EtageMinus"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a59e15f7-a504-4c73-9e34-54bdbcecbb5b"",
-                    ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""MultiTap(tapCount=3)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EtagePlus"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -162,8 +122,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_TouchScreen_PrimaryTouch = m_TouchScreen.FindAction("PrimaryTouch", throwIfNotFound: true);
         m_TouchScreen_ZoomTouch = m_TouchScreen.FindAction("ZoomTouch", throwIfNotFound: true);
         m_TouchScreen_TouchCount = m_TouchScreen.FindAction("TouchCount", throwIfNotFound: true);
-        m_TouchScreen_EtageMinus = m_TouchScreen.FindAction("EtageMinus", throwIfNotFound: true);
-        m_TouchScreen_EtagePlus = m_TouchScreen.FindAction("EtagePlus", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -228,8 +186,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_TouchScreen_PrimaryTouch;
     private readonly InputAction m_TouchScreen_ZoomTouch;
     private readonly InputAction m_TouchScreen_TouchCount;
-    private readonly InputAction m_TouchScreen_EtageMinus;
-    private readonly InputAction m_TouchScreen_EtagePlus;
     public struct TouchScreenActions
     {
         private @InputSystem m_Wrapper;
@@ -237,8 +193,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @PrimaryTouch => m_Wrapper.m_TouchScreen_PrimaryTouch;
         public InputAction @ZoomTouch => m_Wrapper.m_TouchScreen_ZoomTouch;
         public InputAction @TouchCount => m_Wrapper.m_TouchScreen_TouchCount;
-        public InputAction @EtageMinus => m_Wrapper.m_TouchScreen_EtageMinus;
-        public InputAction @EtagePlus => m_Wrapper.m_TouchScreen_EtagePlus;
         public InputActionMap Get() { return m_Wrapper.m_TouchScreen; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -257,12 +211,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @TouchCount.started += instance.OnTouchCount;
             @TouchCount.performed += instance.OnTouchCount;
             @TouchCount.canceled += instance.OnTouchCount;
-            @EtageMinus.started += instance.OnEtageMinus;
-            @EtageMinus.performed += instance.OnEtageMinus;
-            @EtageMinus.canceled += instance.OnEtageMinus;
-            @EtagePlus.started += instance.OnEtagePlus;
-            @EtagePlus.performed += instance.OnEtagePlus;
-            @EtagePlus.canceled += instance.OnEtagePlus;
         }
 
         private void UnregisterCallbacks(ITouchScreenActions instance)
@@ -276,12 +224,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @TouchCount.started -= instance.OnTouchCount;
             @TouchCount.performed -= instance.OnTouchCount;
             @TouchCount.canceled -= instance.OnTouchCount;
-            @EtageMinus.started -= instance.OnEtageMinus;
-            @EtageMinus.performed -= instance.OnEtageMinus;
-            @EtageMinus.canceled -= instance.OnEtageMinus;
-            @EtagePlus.started -= instance.OnEtagePlus;
-            @EtagePlus.performed -= instance.OnEtagePlus;
-            @EtagePlus.canceled -= instance.OnEtagePlus;
         }
 
         public void RemoveCallbacks(ITouchScreenActions instance)
@@ -322,7 +264,5 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPrimaryTouch(InputAction.CallbackContext context);
         void OnZoomTouch(InputAction.CallbackContext context);
         void OnTouchCount(InputAction.CallbackContext context);
-        void OnEtageMinus(InputAction.CallbackContext context);
-        void OnEtagePlus(InputAction.CallbackContext context);
     }
 }

@@ -12,9 +12,6 @@ public class InputManager : MonoBehaviour
     public static UnityAction<InputAction.CallbackContext> OnPositionTouch;
     public static UnityAction<InputAction.CallbackContext> OnTouch2;
 
-    public static UnityAction OnEtageMinus;
-    public static UnityAction OnEtagePlus;
-
     private void Awake()
     {
         _inputSystem = new InputSystem();
@@ -32,9 +29,6 @@ public class InputManager : MonoBehaviour
     {
         _inputSystem.TouchScreen.PrimaryTouch.performed += ctx => MoveTouch(ctx);
         _inputSystem.TouchScreen.ZoomTouch.performed += ctx => ZoomTouch(ctx);
-
-        _inputSystem.TouchScreen.EtageMinus.performed += _ => EtageMinus();
-        _inputSystem.TouchScreen.EtagePlus.performed += _ => EtagePlus();
     }
     private void MoveTouch(InputAction.CallbackContext context)
     {
@@ -45,12 +39,4 @@ public class InputManager : MonoBehaviour
         OnTouch2?.Invoke(context);
     }
 
-    private void EtageMinus()
-    {
-        OnEtageMinus?.Invoke();
-    }
-    private void EtagePlus()
-    {
-        OnEtagePlus?.Invoke();
-    }
 }

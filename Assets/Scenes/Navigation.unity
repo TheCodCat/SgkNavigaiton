@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3215,7 +3215,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 20
     NearClipPlane: 0.01
-    FarClipPlane: 25
+    FarClipPlane: 20
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -3563,7 +3563,7 @@ GameObject:
   - component: {fileID: 1222678922}
   - component: {fileID: 1222678921}
   - component: {fileID: 1222678920}
-  - component: {fileID: 1222678919}
+  - component: {fileID: 1222678923}
   m_Layer: 0
   m_Name: NavController
   m_TagString: Untagged
@@ -3609,27 +3609,6 @@ MonoBehaviour:
   _punktUP: 1
   _wayPoints: []
   _camera: {fileID: 1071928276}
---- !u!114 &1222678919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222678916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222dc08d484f16869bdd89edd9d368fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Container: {fileID: 1222678920}
-  m_RebuildOnSplineChange: 1
-  m_RebuildFrequency: 30
-  m_UpdateColliders: 0
-  m_Sides: 8
-  m_SegmentsPerUnit: 4
-  m_Capped: 1
-  m_Radius: 0.15
-  m_Range: {x: 0, y: 1}
 --- !u!114 &1222678920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3720,6 +3699,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222678916}
   m_Mesh: {fileID: 4300000, guid: 9b5e9140a8d278a46997754b3c9578c1, type: 2}
+--- !u!114 &1222678923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222678916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b74686beb0670a4ea61325c0acf4411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Container: {fileID: 1222678920}
+  m_ItemsToInstantiate:
+  - prefab: {fileID: 0}
+    Prefab: {fileID: 5963339308490841528, guid: 1361f69ca37e33f4cb9bee02acb0945c, type: 3}
+    probability: 0
+    Probability: 100
+  m_Method: 1
+  m_Space: 0
+  m_Spacing: {x: 1.5, y: 1.5}
+  m_Up: 1
+  m_Forward: 2
+  m_PositionOffset:
+    setup: 0
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
+    randomX: 0
+    randomY: 0
+    randomZ: 0
+    space: 0
+  m_RotationOffset:
+    setup: 0
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
+    randomX: 0
+    randomY: 0
+    randomZ: 0
+    space: 0
+  m_ScaleOffset:
+    setup: 0
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
+    randomX: 0
+    randomY: 0
+    randomZ: 0
+    space: 0
+  m_DeprecatedInstances: []
+  m_AutoRefresh: 1
+  m_Seed: -3414
 --- !u!1 &1223729390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,7 +4515,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 25
+  far clip plane: 20
   field of view: 60
   orthographic: 1
   orthographic size: 20
