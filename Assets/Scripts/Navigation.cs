@@ -47,7 +47,6 @@ public class Navigation : MonoBehaviour
         {
             Debug.Log("<color=green>Путь расчитан</color>");
             _wayPoints = _path.corners;
-
             for (int _way = 0; _way < _wayPoints.Length; _way++)
             {
                 Vector3 _myPos = _wayPoints[_way];
