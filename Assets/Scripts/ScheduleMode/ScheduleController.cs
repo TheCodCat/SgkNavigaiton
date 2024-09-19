@@ -57,7 +57,7 @@ public class ScheduleController : MonoBehaviour
 
     public async Task GetGroupCabsPositonAsync()
     {
-        var _listPars = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year, _time.Month, _time.Day - 2), _currentGroup);
+        var _listPars = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year, _time.Month, _time.Day), _currentGroup);
 
         Vector3[] post = new Vector3[_listPars.Lessons.Count];
 
