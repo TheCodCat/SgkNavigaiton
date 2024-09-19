@@ -4,9 +4,9 @@ using System;
 public class Group
 {
     public string Name;
-    public long Id;
+    public int Id;
 
-    public Group(long id, string name)
+    public Group(int id, string name)
     {
         Id = id;
         Name = name;

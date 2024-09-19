@@ -14,7 +14,8 @@ public class ScheduleController : MonoBehaviour
 {
     [SerializeField] DateTime _time;
     ClientSamgkApi _api = new ClientSamgkApi();
-    
+    IResultOutGroup _currentGroup;
+
     [SerializeField] private List<Group> _groups;
     [SerializeField] private Dropdown _groupsDropdown;
 
@@ -33,7 +34,7 @@ public class ScheduleController : MonoBehaviour
     {
         foreach (var group in resultOut)
         {
-            _groups.Add(new Group(group.Id, group.Name));
+            _groups.Add(new Group((int)group.Id, group.Name));
             _groupsDropdown.options.Add(new Dropdown.OptionData(group.Name));
         }
 
@@ -42,17 +43,20 @@ public class ScheduleController : MonoBehaviour
 
     public async void GetGroupList(int id)
     {
-        Debug.Log(_groups[id].Id);
-        await GetGroupCabsPositonAsync(_groups[id].Id);
+        Debug.Log(_groups[_groupsDropdown.value].Id);
+
+        _currentGroup = await _api.Groups.GetGroupAsync(_groups[_groupsDropdown.value].Id);
+        Debug.Log(_currentGroup.Id);
+    }
+    public async void ButtonDestination()
+    {
+        if(_appController.DataKorpus != null)
+            await GetGroupCabsPositonAsync();
     }
 
-    public async Task GetGroupCabsPositonAsync(long id)
+    public async Task GetGroupCabsPositonAsync()
     {
-        IResultOutGroup _currentGroup = await _api.Groups.GetGroupAsync((int)id);
-        Debug.Log(_currentGroup);
-        var _listPars = await _api.Schedule.GetScheduleAsync(new ClientSamgkOutputResponse.LegacyImplementation.DateOnlyLegacy(_time.Year, _time.Month, _time.Day - 1), _currentGroup);
-
-        if(_appController.GetBD() == null) return;
+        var _listPars = await _api.Schedule.GetScheduleAsync(new ClientSamgkOutputResponse.LegacyImplementation.DateOnlyLegacy(_time.Year, _time.Month, _time.Day - 2), _currentGroup);
 
         Vector3[] post = new Vector3[_listPars.Lessons.Count];
 
@@ -72,4 +76,5 @@ public class ScheduleController : MonoBehaviour
         }
         _navigation.Destination(post);
     }
+
 }
