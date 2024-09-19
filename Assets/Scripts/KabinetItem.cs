@@ -26,7 +26,7 @@ public class KabinetItem : MonoBehaviour
     }
     public void GetKabinet()
     {
-        _indexKorpus = AppController.Instance.GetKorpus();
+        _indexKorpus = AppController.Instance.GetKorpusValue();
         AppController.Instance.EtageNavToggle(_etage);
         CameraMotor.Instance.MovomentToPos(new Vector3(_newPos.x, CameraMotor.Instance.CameraCimenachin.transform.position.y, _newPos.z));
         Button.instance.OpenClosePanel();

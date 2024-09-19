@@ -63,6 +63,45 @@ public class Navigation : MonoBehaviour
         }
         else Debug.Log("<color=red>Произошла ошибка</color>");
     }
+
+    public void Destination(params Vector3[] vectors)
+    {
+        NavMesh.CalculatePath(AppController.Instance.DataKorpus.KabinetList[1].PositionKabinet.position, vectors[0], NavMesh.AllAreas, _path);
+
+        if (_path.status == NavMeshPathStatus.PathComplete)
+        {
+            Debug.Log("<color=green>Путь расчитан</color>");
+            _wayPoints = _path.corners;
+            for (int _way = 0; _way < _wayPoints.Length; _way++)
+            {
+                Vector3 _myPos = _wayPoints[_way];
+
+                _wayPoints[_way] = new Vector3(_myPos.x, _myPos.y + _wayPointUP, _myPos.z);
+                _lineRenderer[0].Add(new BezierKnot(_wayPoints[_way]));
+            }
+        }
+        else Debug.Log("<color=red>Произошла ошибка</color>");
+
+        for (int j = 0; j < vectors.Length - 1; j++)
+        {
+            NavMesh.CalculatePath(vectors[j], vectors[j + 1], NavMesh.AllAreas, _path);
+
+            if (_path.status == NavMeshPathStatus.PathComplete)
+            {
+                Debug.Log("<color=green>Путь расчитан</color>");
+                _wayPoints = _path.corners;
+                for (int _way = 0; _way < _wayPoints.Length; _way++)
+                {
+                    Vector3 _myPos = _wayPoints[_way];
+
+                    _wayPoints[_way] = new Vector3(_myPos.x, _myPos.y + _wayPointUP, _myPos.z);
+                    _lineRenderer[0].Add(new BezierKnot(_wayPoints[_way]));
+                }
+            }
+            else Debug.Log("<color=red>Произошла ошибка</color>");
+        }
+
+    }
     public void ClearNavigation()
     {
         _lineRenderer[0].Clear();

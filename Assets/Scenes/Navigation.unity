@@ -4139,6 +4139,8 @@ MonoBehaviour:
   - Name: 
     Id: 0
   _groupsDropdown: {fileID: 1220074578}
+  _appController: {fileID: 559582713}
+  _navigation: {fileID: 1222678918}
 --- !u!1 &1177745562
 GameObject:
   m_ObjectHideFlags: 0

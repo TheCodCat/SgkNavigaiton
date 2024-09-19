@@ -110,9 +110,14 @@ public class AppController : MonoBehaviour
         Navigation.OnGeneration.Invoke(DataKorpus.KabinetList[_kabinets[0].value].PositionKabinet.position, DataKorpus.KabinetList[_kabinets[1].value].PositionKabinet.position);
     }
 
-    public int GetKorpus()
+    public int GetKorpusValue()
     {
         return _korpus.value;
+    }
+
+    public string GetKorpusName()
+    {
+        return VarController.Instance.NewKorpuset[_korpus.value].NameKorpus;
     }
     public DataKorpus GetBD()
     {
