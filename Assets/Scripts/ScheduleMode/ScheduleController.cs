@@ -67,6 +67,7 @@ public class ScheduleController : MonoBehaviour
                     break;
                     //Debug.Log(_appController.GetBD().KabinetList[j].NameKabinet);
                 }
+                else post[i] = _appController.GetBD().KabinetList[1].PositionKabinet.position;
             }
         }
         _navigation.Destination(post);
