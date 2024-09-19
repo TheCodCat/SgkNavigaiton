@@ -66,6 +66,8 @@ public class Navigation : MonoBehaviour
 
     public void Destination(params Vector3[] vectors)
     {
+        _punktPosition.Clear();
+        ClearNavigation();
         NavMesh.CalculatePath(AppController.Instance.DataKorpus.KabinetList[1].PositionKabinet.position, vectors[0], NavMesh.AllAreas, _path);
 
         if (_path.status == NavMeshPathStatus.PathComplete)
