@@ -8,10 +8,11 @@ public class GetPlatform : MonoBehaviour
     private void Start()
     {
         bool _isMobile = Application.isMobilePlatform;
-        Debug.Log(_isMobile);
+        //Debug.Log(_isMobile);
         if (_isMobile)
         {
             PCWarningPanel.SetActive(false);
         }
+        else PCWarningPanel.SetActive(true);
     }
 }

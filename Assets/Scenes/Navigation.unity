@@ -1751,6 +1751,7 @@ GameObject:
   - component: {fileID: 559582712}
   - component: {fileID: 559582713}
   - component: {fileID: 559582714}
+  - component: {fileID: 559582715}
   m_Layer: 0
   m_Name: AppController
   m_TagString: Untagged
@@ -1816,6 +1817,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _panel: {fileID: 1914558629}
   _toggle: {fileID: 543964834}
+--- !u!114 &559582715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559582711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005988b38d0186a4cbb8f789bcbb0d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PCWarningPanel: {fileID: 1649012388}
 --- !u!1 &566870371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,7 +4029,6 @@ MonoBehaviour:
   _wayPointUP: 0.5
   _punktUP: 1
   _wayPoints: []
-  _camera: {fileID: 1071928276}
 --- !u!114 &1222678920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5319,14 +5332,13 @@ GameObject:
   - component: {fileID: 1649012391}
   - component: {fileID: 1649012390}
   - component: {fileID: 1649012393}
-  - component: {fileID: 1649012392}
   m_Layer: 5
   m_Name: PCWarning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1649012389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5385,19 +5397,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649012388}
   m_CullTransparentMesh: 1
---- !u!114 &1649012392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649012388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 005988b38d0186a4cbb8f789bcbb0d88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PCWarningPanel: {fileID: 1649012388}
 --- !u!223 &1649012393
 Canvas:
   m_ObjectHideFlags: 0

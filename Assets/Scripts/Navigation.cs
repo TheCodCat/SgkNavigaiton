@@ -1,5 +1,3 @@
-using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,8 +17,6 @@ public class Navigation : MonoBehaviour
     [SerializeField] private float _punktUP;
     [SerializeField] private Vector3[] _wayPoints;
 
-    [SerializeField] private CinemachineVirtualCamera _camera;
-
     private void Awake()
     {
         if (Instance == null)
@@ -34,13 +30,14 @@ public class Navigation : MonoBehaviour
         _path = new NavMeshPath();
         OnGeneration += Destination;
     }
-
+    // метод вычисления пути
     public void Destination(Vector3 startP,Vector3 endP)
     {
         _punktPosition.Clear();
         _punktPosition.Add(startP);
         _punktPosition.Add(endP);
 
+        //Метод нашей библиотеки вычисляющий путь
         NavMesh.CalculatePath(startP, endP, NavMesh.AllAreas, _path);
 
         if (_path.status == NavMeshPathStatus.PathComplete)

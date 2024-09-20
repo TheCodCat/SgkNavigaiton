@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
-
 [RequireComponent(typeof(DataKorpus)),RequireComponent(typeof(SetBounsens)),RequireComponent(typeof(BoxCollider)),RequireComponent(typeof(NavMeshSurface))]
 public class DataKorpus : MonoBehaviour
 {
