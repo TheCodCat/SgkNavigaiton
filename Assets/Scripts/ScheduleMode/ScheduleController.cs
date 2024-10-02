@@ -11,7 +11,7 @@ using ClientSamgkOutputResponse.Interfaces.Schedule;
 
 public class ScheduleController : MonoBehaviour
 {
-    [SerializeField] DateTime _time;
+    private DateTime _time;
     ClientSamgkApi _api = new ClientSamgkApi();
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
@@ -19,6 +19,7 @@ public class ScheduleController : MonoBehaviour
 
     [SerializeField] private List<Group> _groups;
     [SerializeField] private Dropdown _groupsDropdown;
+    [SerializeField] private Text _numParsText;
 
     [SerializeField] private AppController _appController;
     [SerializeField] private Navigation _navigation;
@@ -77,6 +78,7 @@ public class ScheduleController : MonoBehaviour
     public void GetParsPositionAsync(bool newKorpus)
     {
         Vector3[] kabs = new Vector3[2];
+        _numParsText.text = $"{_numberPars + 1}";
         if (_numberPars == 0 || newKorpus)
         {
             foreach (var kabinet in VarController.Instance.GetKorpus().KabinetList)
@@ -127,14 +129,16 @@ public class ScheduleController : MonoBehaviour
 
     public void ChangeNumberParsPlus()
     {
-        _numberPars = (int)MathF.Abs((_numberPars + 1) % _currentScheduleFromDate.Lessons.Count);
+        if (VarController.Instance.GetKorpus() == null || _currentScheduleFromDate.Lessons.Count == 0) return;
+        _numberPars = (_numberPars + 1) % _currentScheduleFromDate.Lessons.Count;
         GetParsPositionAsync(ChangeNumberPars());
     }
 
     public void ChangeNumberParsMinus()
     {
+        if (VarController.Instance.GetKorpus() == null || _currentScheduleFromDate.Lessons.Count == 0) return;
         _numberPars = (_numberPars - 1) % _currentScheduleFromDate.Lessons.Count;
-        if(_numberPars < 0) _numberPars = _currentScheduleFromDate.Lessons.Count - 1;
+        if(_numberPars < 0) _numberPars = 0;
         GetParsPositionAsync(ChangeNumberPars());
     }
 }
