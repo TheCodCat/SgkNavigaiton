@@ -17,12 +17,17 @@ public class VarController : MonoBehaviour
 
     public DataKorpus SetKorpus(int indexkorpus)
     {
+        if (_dataKorpus != null) Destroy(_dataKorpus.gameObject);
         _dataKorpus = Instantiate(NewKorpuset[indexkorpus].KorpusPrefab).GetComponent<DataKorpus>();
         return _dataKorpus;
     }
     public DataKorpus GetKorpus()
     {
         return _dataKorpus;
+    }
+    public bool IsNewKorpus(int indexkorpus)
+    {
+        return _dataKorpus.NameKorpus == NewKorpuset[indexkorpus].KorpusPrefab.GetComponent<DataKorpus>().NameKorpus ? false : true;
     }
     private void Awake()
     {

@@ -37,6 +37,7 @@ public class Navigation : MonoBehaviour
 
     public void Destination(Vector3 startP,Vector3 endP)
     {
+        ClearNavigation();
         _punktPosition.Clear();
         _punktPosition.Add(startP);
         _punktPosition.Add(endP);

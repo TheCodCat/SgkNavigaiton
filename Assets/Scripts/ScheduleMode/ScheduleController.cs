@@ -15,6 +15,7 @@ public class ScheduleController : MonoBehaviour
     ClientSamgkApi _api = new ClientSamgkApi();
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
+    List<int> _listNameKorpus = new List<int>();
 
     [SerializeField] private List<Group> _groups;
     [SerializeField] private Dropdown _groupsDropdown;
@@ -56,7 +57,7 @@ public class ScheduleController : MonoBehaviour
 
         if (_currentScheduleFromDate.Lessons.Count == 0)
         {
-            Debug.Log("пар нет"); 
+            Debug.Log("пар нет");
             return;
         }
 
@@ -67,19 +68,20 @@ public class ScheduleController : MonoBehaviour
             {
                 VarController.Instance.SetKorpus(i);
                 _appController.SetActiveEtage();
-                GetParsPositionAsync();
+                GetParsPositionAsync(true);
                 return;
             }
         }
     }
-    public void GetParsPositionAsync()
+
+    public void GetParsPositionAsync(bool newKorpus)
     {
         Vector3[] kabs = new Vector3[2];
-        if(_numberPars == 0)
+        if (_numberPars == 0 || newKorpus)
         {
             foreach (var kabinet in VarController.Instance.GetKorpus().KabinetList)
             {
-                if (_currentScheduleFromDate.Lessons[0].Cabs[0].Adress == $"{VarController.Instance.GetKorpus().NameKorpus}/{kabinet.NameKabinet}")
+                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Adress == $"{VarController.Instance.GetKorpus().NameKorpus}/{kabinet.NameKabinet}")
                 {
                     kabs[0] = VarController.Instance.GetKorpus().KabinetList[1].PositionKabinet.position;
                     kabs[1] = kabinet.PositionKabinet.position;
@@ -104,7 +106,7 @@ public class ScheduleController : MonoBehaviour
         _navigation.Destination(kabs[0], kabs[1]);
     }
 
-    public void ChangeNumberPars()
+    public bool ChangeNumberPars()
     {
         if (VarController.Instance.GetKorpus().NameKorpus.ToLower() != _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Adress[0].ToString().ToLower())
         {
@@ -116,23 +118,23 @@ public class ScheduleController : MonoBehaviour
                 {
                     VarController.Instance.SetKorpus(i);
                     _appController.SetActiveEtage();
-                    GetParsPositionAsync();
-                    return;
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     public void ChangeNumberParsPlus()
     {
-        _numberPars = (_numberPars + 1) % _currentScheduleFromDate.Lessons.Count;
-        GetParsPositionAsync();
-        ChangeNumberPars();
+        _numberPars = (int)MathF.Abs((_numberPars + 1) % _currentScheduleFromDate.Lessons.Count);
+        GetParsPositionAsync(ChangeNumberPars());
     }
+
     public void ChangeNumberParsMinus()
     {
         _numberPars = (_numberPars - 1) % _currentScheduleFromDate.Lessons.Count;
-        GetParsPositionAsync();
-        ChangeNumberPars();
+        if(_numberPars < 0) _numberPars = _currentScheduleFromDate.Lessons.Count - 1;
+        GetParsPositionAsync(ChangeNumberPars());
     }
 }
