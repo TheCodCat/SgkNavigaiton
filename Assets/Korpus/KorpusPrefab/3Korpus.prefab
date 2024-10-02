@@ -540,6 +540,7 @@ MonoBehaviour:
   - NameEtage: 
   - NameEtage: 
   - NameEtage: 
+  _nameKorpus: 3
 --- !u!1 &5377930730173356104
 GameObject:
   m_ObjectHideFlags: 0

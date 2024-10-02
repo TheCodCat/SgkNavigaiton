@@ -15,9 +15,10 @@ public class VarController : MonoBehaviour
     [SerializeField] private DataKorpus _dataKorpus;
     public List<NewKorpuset> NewKorpuset => _korpus;
 
-    public void SetKorpus(int indexkorpus)
+    public DataKorpus SetKorpus(int indexkorpus)
     {
         _dataKorpus = Instantiate(NewKorpuset[indexkorpus].KorpusPrefab).GetComponent<DataKorpus>();
+        return _dataKorpus;
     }
     public DataKorpus GetKorpus()
     {

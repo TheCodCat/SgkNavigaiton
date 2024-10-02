@@ -64,7 +64,7 @@ public class Navigation : MonoBehaviour
         else Debug.Log("<color=red>Произошла ошибка</color>");
     }
 
-    public void Destination(params Vector3[] vectors)
+/*    public void Destination(params Vector3[] vectors)
     {
         _punktPosition.Clear();
         ClearNavigation();
@@ -103,7 +103,7 @@ public class Navigation : MonoBehaviour
             else Debug.Log("<color=red>Произошла ошибка</color>");
         }
 
-    }
+    }*/
     public void ClearNavigation()
     {
         _lineRenderer[0].Clear();

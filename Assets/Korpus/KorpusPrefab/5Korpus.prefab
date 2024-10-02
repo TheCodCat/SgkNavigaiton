@@ -638,6 +638,7 @@ MonoBehaviour:
   - NameEtage: 1
   - NameEtage: 2
   - NameEtage: 3
+  _nameKorpus: 5
 --- !u!65 &3445966498611384979
 BoxCollider:
   m_ObjectHideFlags: 0

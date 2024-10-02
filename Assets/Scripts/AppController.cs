@@ -52,8 +52,8 @@ public class AppController : MonoBehaviour
         }
         if (VarController.Instance.NewKorpuset[indexkorpus].KorpusPrefab != null)
         {
-            _varController.SetKorpus(indexkorpus);
-            VarController.Instance.GetKorpus().transform.parent = _korpusParent.transform;
+            DataKorpus dataKorpus = _varController.SetKorpus(indexkorpus);
+            dataKorpus.transform.SetParent(_korpusParent);
             UIController.Instance.KabinetPanel(VarController.Instance.GetKorpus());
             a.gameObject.SetActive(false);
         }

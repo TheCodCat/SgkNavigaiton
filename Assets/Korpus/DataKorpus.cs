@@ -9,6 +9,8 @@ public class DataKorpus : MonoBehaviour
 {
     [SerializeField] private List<Kabinet> _kabinetList = new List<Kabinet>();
     [SerializeField] private List<Etage> _etageList = new List<Etage>();
+    [SerializeField] private string _nameKorpus;
     public List<Kabinet> KabinetList => _kabinetList;
     public List<Etage> EtageList => _etageList;
+    public string NameKorpus => _nameKorpus;
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ClientSamgk;
@@ -6,11 +5,8 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
 using ClientSamgkOutputResponse.Interfaces.Groups;
-using ClientSamgkOutputResponse.Interfaces.Identity;
-using static UnityEditor.Progress;
 using ClientSamgkOutputResponse.LegacyImplementation;
 using ClientSamgkOutputResponse.Interfaces.Schedule;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 
 public class ScheduleController : MonoBehaviour
@@ -25,6 +21,7 @@ public class ScheduleController : MonoBehaviour
 
     [SerializeField] private AppController _appController;
     [SerializeField] private Navigation _navigation;
+    [SerializeField,Range(0,6)] private int _numberPars;
 
     private async void Start()
     {
@@ -57,21 +54,85 @@ public class ScheduleController : MonoBehaviour
     {
         _currentScheduleFromDate = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year,_time.Month,_time.Day),_currentGroup);
 
-        foreach (var item in _currentScheduleFromDate.Lessons)
+        if (_currentScheduleFromDate.Lessons.Count == 0)
         {
-            Debug.Log(item.Cabs[0].Adress);
-            
+            Debug.Log("пар нет"); 
+            return;
         }
-        for (int i = 0; i < VarController.Instance.NewKorpuset.Count; i++)
-        {
 
+        for (int i = 1; i < VarController.Instance.NewKorpuset.Count; i++)
+        {
+            //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
             if (_currentScheduleFromDate.Lessons[0].Cabs[0].Adress[0].ToString().ToLower() == VarController.Instance.NewKorpuset[i].NameKorpus.ToLower())
             {
                 VarController.Instance.SetKorpus(i);
                 _appController.SetActiveEtage();
+                GetParsPositionAsync();
                 return;
             }
         }
     }
+    public void GetParsPositionAsync()
+    {
+        Vector3[] kabs = new Vector3[2];
+        if(_numberPars == 0)
+        {
+            foreach (var kabinet in VarController.Instance.GetKorpus().KabinetList)
+            {
+                if (_currentScheduleFromDate.Lessons[0].Cabs[0].Adress == $"{VarController.Instance.GetKorpus().NameKorpus}/{kabinet.NameKabinet}")
+                {
+                    kabs[0] = VarController.Instance.GetKorpus().KabinetList[1].PositionKabinet.position;
+                    kabs[1] = kabinet.PositionKabinet.position;
+                }
+            }
+        }
+        else
+        {
+            //первый кабинет
+            foreach (var first in VarController.Instance.GetKorpus().KabinetList)
+            {
+                if (_currentScheduleFromDate.Lessons[_numberPars - 1].Cabs[0].Adress == $"{VarController.Instance.GetKorpus().NameKorpus}/{first.NameKabinet}")
+                    kabs[0] = first.PositionKabinet.position;
+            }
+            //следующий кабинет
+            foreach (var last in VarController.Instance.GetKorpus().KabinetList)
+            {
+                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Adress == $"{VarController.Instance.GetKorpus().NameKorpus}/{last.NameKabinet}")
+                    kabs[1] = last.PositionKabinet.position;
+            }
+        }
+        _navigation.Destination(kabs[0], kabs[1]);
+    }
 
+    public void ChangeNumberPars()
+    {
+        if (VarController.Instance.GetKorpus().NameKorpus.ToLower() != _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Adress[0].ToString().ToLower())
+        {
+            Debug.Log("Пара в другом кабинете");
+            for (int i = 1; i < VarController.Instance.NewKorpuset.Count; i++)
+            {
+                //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
+                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Adress[0].ToString().ToLower() == VarController.Instance.NewKorpuset[i].NameKorpus.ToLower())
+                {
+                    VarController.Instance.SetKorpus(i);
+                    _appController.SetActiveEtage();
+                    GetParsPositionAsync();
+                    return;
+                }
+            }
+        }
+    }
+
+    public void ChangeNumberParsPlus()
+    {
+        _numberPars = (_numberPars + 1) % _currentScheduleFromDate.Lessons.Count;
+        GetParsPositionAsync();
+        ChangeNumberPars();
+    }
+    public void ChangeNumberParsMinus()
+    {
+        _numberPars = (_numberPars - 1) % _currentScheduleFromDate.Lessons.Count;
+        GetParsPositionAsync();
+        ChangeNumberPars();
+    }
 }
