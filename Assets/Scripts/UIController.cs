@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
         for (int i = 1; i < dataKorpus.KabinetList.Count; i++)
         {
             KabinetItem _myItem = Instantiate(_itemPrefab).GetComponent<KabinetItem>();
-            _myItem.SetItemKabinet(dataKorpus.KabinetList[i].NameKabinet, dataKorpus.KabinetList[i].Etage,AppController.Instance.GetKorpusValue(),i);
+            _myItem.SetItemKabinet(dataKorpus.KabinetList[i].NameKabinet, dataKorpus.KabinetList[i].Etage, AppController.Instance.GetKorpusValue(), i);
             _myItem.transform.SetParent(_content);
         }
     }

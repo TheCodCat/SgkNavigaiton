@@ -551,7 +551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &62460192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1382,7 +1382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &371493239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2133,6 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraMotor: {fileID: 901411089}
+  _varController: {fileID: 871312231}
   _korpus: {fileID: 508145030}
   _kabinets:
   - {fileID: 300132419}
@@ -2931,6 +2932,7 @@ MonoBehaviour:
     KorpusPrefab: {fileID: 4908258878807684669, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
   - NameKorpus: 5
     KorpusPrefab: {fileID: 2367108081359231858, guid: 7921f1fdef364dc4998c8c3d93e39997, type: 3}
+  _dataKorpus: {fileID: 0}
 --- !u!1 &892695527
 GameObject:
   m_ObjectHideFlags: 0
@@ -4685,6 +4687,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ScheduleController, Assembly-CSharp
         m_MethodName: GetGroupList
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1169167881}
+        m_TargetAssemblyTypeName: ScheduleController, Assembly-CSharp
+        m_MethodName: GetGroupCabsPositonAsync
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -9,6 +9,8 @@ using ClientSamgkOutputResponse.Interfaces.Groups;
 using ClientSamgkOutputResponse.Interfaces.Identity;
 using static UnityEditor.Progress;
 using ClientSamgkOutputResponse.LegacyImplementation;
+using ClientSamgkOutputResponse.Interfaces.Schedule;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 
 public class ScheduleController : MonoBehaviour
@@ -16,6 +18,7 @@ public class ScheduleController : MonoBehaviour
     [SerializeField] DateTime _time;
     ClientSamgkApi _api = new ClientSamgkApi();
     IResultOutGroup _currentGroup;
+    IResultOutScheduleFromDate _currentScheduleFromDate;
 
     [SerializeField] private List<Group> _groups;
     [SerializeField] private Dropdown _groupsDropdown;
@@ -44,38 +47,31 @@ public class ScheduleController : MonoBehaviour
 
     public async void GetGroupList(int id)
     {
-        Debug.Log(_groups[_groupsDropdown.value].Id);
+        if(id == 0) return;
 
         _currentGroup = await _api.Groups.GetGroupAsync(_groups[_groupsDropdown.value].Id);
         Debug.Log(_currentGroup.Id);
     }
-    public async void ButtonDestination()
+
+    public async void GetGroupCabsPositonAsync()
     {
-        if(_appController.DataKorpus != null)
-            await GetGroupCabsPositonAsync();
-    }
+        _currentScheduleFromDate = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year,_time.Month,_time.Day),_currentGroup);
 
-    public async Task GetGroupCabsPositonAsync()
-    {
-        var _listPars = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year, _time.Month, _time.Day), _currentGroup);
-
-        Vector3[] post = new Vector3[_listPars.Lessons.Count];
-
-        for (int i = 0; i < _listPars.Lessons.Count; i++)
+        foreach (var item in _currentScheduleFromDate.Lessons)
         {
-            var nameKorpus = VarController.Instance.NewKorpuset[_appController.GetKorpusValue()].NameKorpus;
-            for (int j = 0; j < _appController.DataKorpus.KabinetList.Count; j++)
+            Debug.Log(item.Cabs[0].Adress);
+            
+        }
+        for (int i = 0; i < VarController.Instance.NewKorpuset.Count; i++)
+        {
+
+            if (_currentScheduleFromDate.Lessons[0].Cabs[0].Adress[0].ToString().ToLower() == VarController.Instance.NewKorpuset[i].NameKorpus.ToLower())
             {
-                if ($"{nameKorpus}/{_appController.GetBD().KabinetList[j].NameKabinet}" == _listPars.Lessons[i].Cabs[0].Adress)
-                {
-                    post[i] = _appController.GetBD().KabinetList[j].PositionKabinet.position;
-                    break;
-                    //Debug.Log(_appController.GetBD().KabinetList[j].NameKabinet);
-                }
-                else post[i] = _appController.GetBD().KabinetList[1].PositionKabinet.position;
+                VarController.Instance.SetKorpus(i);
+                _appController.SetActiveEtage();
+                return;
             }
         }
-        _navigation.Destination(post);
     }
 
 }

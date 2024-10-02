@@ -19,7 +19,7 @@ public class KabinetItem : MonoBehaviour
         _indexKabinet = indexKabinet;
         _etage = etage - 1;
 
-        _dataKorpus = AppController.Instance.GetBD();
+        _dataKorpus = VarController.Instance.GetKorpus();
         _newPos.x = _dataKorpus.KabinetList[_indexKabinet].PositionKabinet.position.x;
         _newPos.y = CameraMotor.Instance.CameraCimenachin.transform.position.y;
         _newPos.z = _dataKorpus.KabinetList[_indexKabinet].PositionKabinet.position.z;

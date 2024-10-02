@@ -7,6 +7,7 @@ public class AppController : MonoBehaviour
 {
     public static AppController Instance;
     [SerializeField] private CameraMotor _cameraMotor;
+    [SerializeField] private VarController _varController;
     [Header("Выподающие списки")]
     [SerializeField] private Dropdown _korpus;
     [SerializeField] private List<Dropdown> _kabinets;
@@ -18,7 +19,6 @@ public class AppController : MonoBehaviour
     [SerializeField] private List<Toggle> _toggles;
     [SerializeField] private Text a;
     public Vector3[] PosToEtage => _posToEtage;
-    public DataKorpus DataKorpus { get; private set; }
 
     public ToggleGroup toggleGroup;
     private void Awake()
@@ -52,12 +52,11 @@ public class AppController : MonoBehaviour
         }
         if (VarController.Instance.NewKorpuset[indexkorpus].KorpusPrefab != null)
         {
-            DataKorpus = Instantiate(VarController.Instance.NewKorpuset[indexkorpus].KorpusPrefab.GetComponent<DataKorpus>());
-            DataKorpus.transform.parent = _korpusParent.transform;
-            UIController.Instance.KabinetPanel(DataKorpus);
+            _varController.SetKorpus(indexkorpus);
+            VarController.Instance.GetKorpus().transform.parent = _korpusParent.transform;
+            UIController.Instance.KabinetPanel(VarController.Instance.GetKorpus());
             a.gameObject.SetActive(false);
         }
-        else DataKorpus = null;
     }
     public void SetKabinetToKorpus()
     {
@@ -65,8 +64,8 @@ public class AppController : MonoBehaviour
         {
             item.ClearOptions();
         }
-        if (DataKorpus == null) return;
-        foreach (var kabinets in DataKorpus.KabinetList)
+        if (_varController.GetKorpus() == null) return;
+        foreach (var kabinets in _varController.GetKorpus().KabinetList)
         {
             foreach (var kabinet in _kabinets)
             {
@@ -92,8 +91,8 @@ public class AppController : MonoBehaviour
             item.interactable = false;
         }
         //включение активных этажей
-        if (DataKorpus == null) return;
-        for (int i = 0; i < DataKorpus.EtageList.Count; i++)
+        if (_varController.GetKorpus() == null) return;
+        for (int i = 0; i < _varController.GetKorpus().EtageList.Count; i++)
         {
             _toggles[i].interactable = true;
         }
@@ -107,9 +106,8 @@ public class AppController : MonoBehaviour
                 return;
             }
         }
-        Navigation.OnGeneration.Invoke(DataKorpus.KabinetList[_kabinets[0].value].PositionKabinet.position, DataKorpus.KabinetList[_kabinets[1].value].PositionKabinet.position);
+        Navigation.OnGeneration.Invoke(_varController.GetKorpus().KabinetList[_kabinets[0].value].PositionKabinet.position, _varController.GetKorpus().KabinetList[_kabinets[1].value].PositionKabinet.position);
     }
-
     public int GetKorpusValue()
     {
         return _korpus.value;
@@ -118,9 +116,5 @@ public class AppController : MonoBehaviour
     public string GetKorpusName()
     {
         return VarController.Instance.NewKorpuset[_korpus.value].NameKorpus;
-    }
-    public DataKorpus GetBD()
-    {
-        return DataKorpus;
     }
 }
