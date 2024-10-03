@@ -129,14 +129,14 @@ public class ScheduleController : MonoBehaviour
 
     public void ChangeNumberParsPlus()
     {
-        if (VarController.Instance.GetKorpus() == null || _currentScheduleFromDate.Lessons.Count == 0) return;
+        if (VarController.Instance.GetKorpus() == null || _groupsDropdown.value == 0) return;
         _numberPars = (_numberPars + 1) % _currentScheduleFromDate.Lessons.Count;
         GetParsPositionAsync(ChangeNumberPars());
     }
 
     public void ChangeNumberParsMinus()
     {
-        if (VarController.Instance.GetKorpus() == null || _currentScheduleFromDate.Lessons.Count == 0) return;
+        if (VarController.Instance.GetKorpus() == null || _groupsDropdown.value == 0) return;
         _numberPars = (_numberPars - 1) % _currentScheduleFromDate.Lessons.Count;
         if(_numberPars < 0) _numberPars = 0;
         GetParsPositionAsync(ChangeNumberPars());
