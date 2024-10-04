@@ -607,7 +607,7 @@ MonoBehaviour:
   - NameKabinet: 535
     Etage: 3
     PositionKabinet: {fileID: 7551476082403540705}
-  - NameKabinet: 535a
+  - NameKabinet: "535\u0430"
     Etage: 3
     PositionKabinet: {fileID: 4255101202822931465}
   - NameKabinet: 536
