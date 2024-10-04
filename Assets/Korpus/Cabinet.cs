@@ -1,7 +1,8 @@
+using ClientSamgkOutputResponse.Interfaces.Cabs;
 using UnityEngine;
 
 [System.Serializable]
-public class Kabinet
+public class Cabinet
 {
     public string NameKabinet;
     public int Etage;

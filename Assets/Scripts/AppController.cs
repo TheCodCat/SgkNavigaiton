@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,6 @@ public class AppController : MonoBehaviour
     [SerializeField] private int _indexEtage;
     [SerializeField] private Vector3[] _posToEtage;
     [SerializeField] private List<Toggle> _toggles;
-    [SerializeField] private Text a;
     public Vector3[] PosToEtage => _posToEtage;
 
     public ToggleGroup toggleGroup;
@@ -29,36 +29,29 @@ public class AppController : MonoBehaviour
         }
         else Destroy(gameObject);
     }
-    private void Start()
+    private async void Start()
     {
-        SetKorpus();
+        await SetKorpus();
     }
-    public void SetKorpus()
+    public async Task SetKorpus()
     {
-        foreach (var korpus in VarController.Instance.NewKorpuset)
+        foreach (var korpus in _varController.Campuset)
         {
-            _korpus.options.Add(new Dropdown.OptionData(korpus.NameKorpus));
+            if(korpus is null) _korpus.options.Add(new Dropdown.OptionData(string.Empty));
+            else _korpus.options.Add(new Dropdown.OptionData(korpus.NameKorpus));
         }
+        await Task.Yield();
     }
     public void KorpusSpawn(int indexkorpus)
     {
-        if (_korpusParent.childCount != 0)
-        {
-            for (int i = _korpusParent.childCount - 1; i >= 0; i--)
-            {
-                Destroy(_korpusParent.GetChild(i).gameObject);
-                a.gameObject.SetActive(true);
-            }
-        }
-        if (VarController.Instance.NewKorpuset[indexkorpus].KorpusPrefab != null)
+        if (_varController.Campuset[indexkorpus] != null)
         {
             DataKorpus dataKorpus = _varController.SetKorpus(indexkorpus);
             dataKorpus.transform.SetParent(_korpusParent);
-            UIController.Instance.KabinetPanel(VarController.Instance.GetKorpus());
-            a.gameObject.SetActive(false);
+            UIController.Instance.KabinetPanel(_varController.GetKorpus());
         }
     }
-    public void SetKabinetToKorpus()
+    public async void SetKabinetToKorpus()
     {
         foreach (var item in _kabinets)
         {
@@ -72,6 +65,7 @@ public class AppController : MonoBehaviour
                 kabinet.options.Add(new Dropdown.OptionData(kabinets.NameKabinet));
             }
         }
+        await Task.Yield();
     }
     public void EtageSpawnToggle(bool IsEtage)
     {
@@ -115,6 +109,6 @@ public class AppController : MonoBehaviour
 
     public string GetKorpusName()
     {
-        return VarController.Instance.NewKorpuset[_korpus.value].NameKorpus;
+        return VarController.Instance.Campuset[_korpus.value].NameKorpus;
     }
 }

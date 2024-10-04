@@ -7,16 +7,14 @@ using System;
 using ClientSamgkOutputResponse.Interfaces.Groups;
 using ClientSamgkOutputResponse.LegacyImplementation;
 using ClientSamgkOutputResponse.Interfaces.Schedule;
-using static UnityEngine.ParticleSystem;
-
 
 public class ScheduleController : MonoBehaviour
 {
     private DateTime _time;
     ClientSamgkApi _api = new ClientSamgkApi();
+    IList<IResultOutGroup> _allGroups;
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
-    List<int> _listNameKorpus = new List<int>();
 
     [SerializeField] private List<Group> _groups;
     [SerializeField] private Dropdown _groupsDropdown;
@@ -29,12 +27,12 @@ public class ScheduleController : MonoBehaviour
     private async void Start()
     {
         _time = DateTime.Now;
-        var groupsData = await _api.Groups.GetGroupsAsync();
+		_allGroups = await _api.Groups.GetGroupsAsync();
 
-        await GetAllGroups((List<IResultOutGroup>)groupsData);
+        await GetAllGroups(_allGroups);
     }
 
-    private async Task GetAllGroups(List<IResultOutGroup> resultOut)
+    private async Task GetAllGroups(IList<IResultOutGroup> resultOut)
     {
         foreach (var group in resultOut)
         {
@@ -65,10 +63,10 @@ public class ScheduleController : MonoBehaviour
             return;
         }
 
-        for (int i = 1; i < VarController.Instance.NewKorpuset.Count; i++)
+        for (int i = 1; i < VarController.Instance.Campuset.Count; i++)
         {
             //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
-            if (_currentScheduleFromDate.Lessons[0].Cabs[0].Campus == VarController.Instance.NewKorpuset[i].NameKorpus)
+            if (_currentScheduleFromDate.Lessons[0].Cabs[0].Campus == VarController.Instance.Campuset[i].NameKorpus)
             {
                 VarController.Instance.SetKorpus(i);
                 _appController.SetActiveEtage();
@@ -124,10 +122,10 @@ public class ScheduleController : MonoBehaviour
         if (VarController.Instance.GetKorpus().NameKorpus != _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus)
         {
             Debug.Log("Пара в другом кабинете");
-            for (int i = 1; i < VarController.Instance.NewKorpuset.Count; i++)
+            for (int i = 1; i < VarController.Instance.Campuset.Count; i++)
             {
                 //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
-                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus == VarController.Instance.NewKorpuset[i].NameKorpus)
+                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus == VarController.Instance.Campuset[i].NameKorpus)
                 {
                     VarController.Instance.SetKorpus(i);
                     _appController.SetActiveEtage();
@@ -152,4 +150,24 @@ public class ScheduleController : MonoBehaviour
         if(_numberPars < 0) _numberPars = 0;
         GetParsPositionAsync(ChangeNumberPars());
     }
+    public async void GetNameGroup(string name)
+    {
+        if(name.Length is not 0)
+        {
+            _groupsDropdown.ClearOptions();
+            foreach (var item in _allGroups)
+            {
+                for (var i = 0; i < name.Length; i++)
+                {
+                    if (item.Name[i] != name[i]) continue;
+                    else
+                    {
+                        _groupsDropdown.options.Add(new Dropdown.OptionData(item.Name));
+                    }
+                }
+            }
+        }
+
+        await Task.Yield();
+	}
 }
