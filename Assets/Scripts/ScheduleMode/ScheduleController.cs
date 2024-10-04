@@ -37,6 +37,8 @@ public class ScheduleController : MonoBehaviour
     {
         foreach (var group in resultOut)
         {
+            Debug.Log(group);
+            if (group.Course > 4) continue;
             _groups.Add(new Group((int)group.Id, group.Name));
             _groupsDropdown.options.Add(new Dropdown.OptionData(group.Name));
         }
@@ -65,7 +67,7 @@ public class ScheduleController : MonoBehaviour
         for (int i = 1; i < VarController.Instance.NewKorpuset.Count; i++)
         {
             //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
-            if (_currentScheduleFromDate.Lessons[0].Cabs[0].Adress[0].ToString().ToLower() == VarController.Instance.NewKorpuset[i].NameKorpus.ToLower())
+            if (_currentScheduleFromDate.Lessons[0].Cabs[0].Campus == VarController.Instance.NewKorpuset[i].NameKorpus.ToLower())
             {
                 VarController.Instance.SetKorpus(i);
                 _appController.SetActiveEtage();
