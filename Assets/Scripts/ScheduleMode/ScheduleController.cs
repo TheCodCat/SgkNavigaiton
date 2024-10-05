@@ -28,8 +28,7 @@ public class ScheduleController : MonoBehaviour
     {
         _time = DateTime.Now;
 		_allGroups = await _api.Groups.GetGroupsAsync();
-
-        await GetAllGroups(_allGroups);
+		await GetAllGroups(_allGroups);
     }
 
     private async Task GetAllGroups(IList<IResultOutGroup> resultOut)
@@ -49,7 +48,7 @@ public class ScheduleController : MonoBehaviour
     {
         if(id == 0) return;
 
-        _currentGroup = await _api.Groups.GetGroupAsync(_groups[_groupsDropdown.value].Id);
+        _currentGroup = await _api.Groups.GetGroupAsync(_groups[id].Name);
         Debug.Log(_currentGroup.Id);
     }
 
@@ -70,13 +69,13 @@ public class ScheduleController : MonoBehaviour
             {
                 VarController.Instance.SetKorpus(i);
                 _appController.SetActiveEtage();
-                GetParsPositionAsync(true);
+                GetParsPositionAsync();
                 return;
             }
         }
     }
 
-    public void GetParsPositionAsync(bool newKorpus)
+    public void GetParsPositionAsync(bool newKorpus = true)
     {
         Vector3[] kabs = new Vector3[2];
         _numParsText.text = $"{_numberPars + 1}";
@@ -150,24 +149,29 @@ public class ScheduleController : MonoBehaviour
         if(_numberPars < 0) _numberPars = 0;
         GetParsPositionAsync(ChangeNumberPars());
     }
-    public async void GetNameGroup(string name)
+
+    public async void GetNameGroup(string needGroup)
     {
-        if(name.Length is not 0)
+        if(needGroup.Length > 0)
         {
             _groupsDropdown.ClearOptions();
-            foreach (var item in _allGroups)
+            for (int i = 0; i < _groups.Count; i++)
             {
-                for (var i = 0; i < name.Length; i++)
+                int ratio = FuzzySharp.Fuzz.Ratio(_allGroups[i].Name,needGroup);
+                if (ratio > 0)
                 {
-                    if (item.Name[i] != name[i]) continue;
-                    else
-                    {
-                        _groupsDropdown.options.Add(new Dropdown.OptionData(item.Name));
-                    }
+                    Debug.Log($"{ratio} {_groups[i].Name} {needGroup}");
+                    _groupsDropdown.options.Add(new Dropdown.OptionData(_groups[i].Name));
                 }
             }
         }
-
+        else
+        {
+			for (int i = 0; i < _groups.Count; i++)
+			{
+				_groupsDropdown.options.Add(new Dropdown.OptionData(_groups[i].Name));
+			}
+		}
         await Task.Yield();
 	}
 }

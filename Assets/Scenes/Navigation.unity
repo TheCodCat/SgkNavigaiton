@@ -4836,7 +4836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groups:
-  - Name: 
+  - Name: "\u0413\u0440\u0443\u043F\u043F\u0430 \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u0430"
     Id: 0
   _groupsDropdown: {fileID: 1220074578}
   _numParsText: {fileID: 1017995886}
