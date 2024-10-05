@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.Splines;
 using UnityEngine.UIElements;
 
+/// <summary>
+///  ласс с логикой навигации и прокладывани€ пути
+/// </summary>
 public class Navigation : MonoBehaviour
 {
     public static Navigation Instance;

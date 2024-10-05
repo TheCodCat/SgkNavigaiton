@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
 using ClientSamgkOutputResponse.Interfaces.Groups;
-using ClientSamgkOutputResponse.LegacyImplementation;
 using ClientSamgkOutputResponse.Interfaces.Schedule;
+using FuzzySharp;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -26,7 +26,6 @@ public class ScheduleController : MonoBehaviour
 
     private async void Start()
     {
-        _time = DateTime.Now;
 		_allGroups = await _api.Groups.GetGroupsAsync();
 		await GetAllGroups(_allGroups);
     }
@@ -54,7 +53,7 @@ public class ScheduleController : MonoBehaviour
 
     public async void GetGroupCabsPositonAsync()
     {
-        _currentScheduleFromDate = await _api.Schedule.GetScheduleAsync(new DateOnlyLegacy(_time.Year,_time.Month,_time.Day),_currentGroup);
+        _currentScheduleFromDate = await _api.Schedule.GetScheduleAsync(DateTime.Now,_currentGroup);
 
         if (_currentScheduleFromDate.Lessons.Count == 0)
         {
@@ -152,13 +151,15 @@ public class ScheduleController : MonoBehaviour
 
     public async void GetNameGroup(string needGroup)
     {
+        if (_groups.Count <= 1) return;
+
         if(needGroup.Length > 0)
         {
             _groupsDropdown.ClearOptions();
             for (int i = 0; i < _groups.Count; i++)
             {
-                int ratio = FuzzySharp.Fuzz.Ratio(_allGroups[i].Name,needGroup);
-                if (ratio > 0)
+                int ratio = Fuzz.Ratio(_groups[i].Name,needGroup);
+                if (ratio >= 20)
                 {
                     Debug.Log($"{ratio} {_groups[i].Name} {needGroup}");
                     _groupsDropdown.options.Add(new Dropdown.OptionData(_groups[i].Name));

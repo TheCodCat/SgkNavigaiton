@@ -91,79 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca41769fd621a64aa1aef42e8fb2bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _kabinetList:
-  - NameKabinet: 
-    Etage: 0
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u0412"
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u042D\u0412/1"
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u042D\u0412/2"
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u042D\u0412/3"
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u042D\u0412/4"
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 203
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 204
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 205
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 206
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 208
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 209
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 211
-    Etage: 1
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 212
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 213
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 214
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 215
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 516
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 217
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 218
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 219
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: 220
-    Etage: 2
-    PositionKabinet: {fileID: 0}
-  - NameKabinet: "\u0413"
-    Etage: 1
-    PositionKabinet: {fileID: 0}
+  _kabinetList: []
   _etageList:
-  - NameEtage: 
-  - NameEtage: 
+  - NameEtage: 1
+  - NameEtage: 2
   _nameKorpus: 1
 --- !u!65 &2313041941257297497
 BoxCollider:

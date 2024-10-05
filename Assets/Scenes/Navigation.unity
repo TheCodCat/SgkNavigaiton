@@ -1935,6 +1935,7 @@ GameObject:
   - component: {fileID: 459197480}
   - component: {fileID: 459197479}
   - component: {fileID: 459197478}
+  - component: {fileID: 459197482}
   m_Layer: 5
   m_Name: DefaultCanvas
   m_TagString: Untagged
@@ -2031,6 +2032,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &459197482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459197477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a770e9712c036a1408bfbeb70e67df18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 0
+  _scrollbar: {fileID: 2055650423}
 --- !u!224 &508145029 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2195508987567552199, guid: 3524cab1cb4a7554698ceda1923c1435, type: 3}
@@ -2694,6 +2709,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5060586220410408695, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.06666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060586220410408695, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 6f12ecbd66ab2274fba79fa3a9e6f748, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4560,6 +4583,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957018144526196155, guid: 7921f1fdef364dc4998c8c3d93e39997, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5779250003866464419, guid: 7921f1fdef364dc4998c8c3d93e39997, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4600,6 +4627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8317034336476109775, guid: 7921f1fdef364dc4998c8c3d93e39997, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: c3e49a067cdf3ab4d870da48e44e9829, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5436,7 +5467,7 @@ RectTransform:
   m_Father: {fileID: 1447603088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6125,6 +6156,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4153182074034169149, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.06666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153182074034169149, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: cecbcd1e533e7754487b85a8aeb23273, type: 2}
     - target: {fileID: 5271084340231328137, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
       propertyPath: m_Name
       value: 2Korpus
@@ -6880,7 +6919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1649012389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7331,6 +7370,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4153182074034169149, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.06666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153182074034169149, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 415df2d8143a3834986425f628a11768, type: 2}
     - target: {fileID: 5271084340231328137, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
       propertyPath: m_Name
       value: 1Korpus
@@ -7904,7 +7951,7 @@ MonoBehaviour:
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 2055650423}
   m_HorizontalScrollbarVisibility: 1
-  m_VerticalScrollbarVisibility: 2
+  m_VerticalScrollbarVisibility: 0
   m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
@@ -8072,7 +8119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1914558630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8789,19 +8836,7 @@ MonoBehaviour:
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1169167881}
-        m_TargetAssemblyTypeName: ScheduleController, Assembly-CSharp
-        m_MethodName: GetScrollBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2055650424
 MonoBehaviour:
   m_ObjectHideFlags: 0

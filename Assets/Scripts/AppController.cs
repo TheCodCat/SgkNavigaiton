@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс основной логики приложения
+/// </summary>
 public class AppController : MonoBehaviour
 {
     public static AppController Instance;
@@ -42,7 +45,7 @@ public class AppController : MonoBehaviour
         }
         await Task.Yield();
     }
-    public void KorpusSpawn(int indexkorpus)
+    public async void KorpusSpawn(int indexkorpus)
     {
         if (_varController.Campuset[indexkorpus] != null)
         {
@@ -50,6 +53,7 @@ public class AppController : MonoBehaviour
             dataKorpus.transform.SetParent(_korpusParent);
             UIController.Instance.KabinetPanel(_varController.GetKorpus());
         }
+        await Task.Yield ();
     }
     public async void SetKabinetToKorpus()
     {
@@ -67,16 +71,19 @@ public class AppController : MonoBehaviour
         }
         await Task.Yield();
     }
+
     public void EtageSpawnToggle(bool IsEtage)
     {
         int _etage = int.Parse(toggleGroup.ActiveToggles().FirstOrDefault().name);
         _indexEtage = _etage;
         _cameraMotor.MovomentToEtage(_posToEtage[_etage]);
     }
+
     public void EtageNavToggle(int IsEtage)
     {
         _toggles[IsEtage].isOn = true;
     }
+
     public void SetActiveEtage()
     {
         //выключение активных этажей
@@ -91,6 +98,7 @@ public class AppController : MonoBehaviour
             _toggles[i].interactable = true;
         }
     }
+
     public void SetPosition()
     {
         foreach (var item in _kabinets)
@@ -102,6 +110,7 @@ public class AppController : MonoBehaviour
         }
         Navigation.OnGeneration.Invoke(_varController.GetKorpus().KabinetList[_kabinets[0].value].PositionKabinet.position, _varController.GetKorpus().KabinetList[_kabinets[1].value].PositionKabinet.position);
     }
+
     public int GetKorpusValue()
     {
         return _korpus.value;

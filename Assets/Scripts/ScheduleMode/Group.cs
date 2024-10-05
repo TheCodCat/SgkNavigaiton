@@ -1,6 +1,4 @@
-using System;
-
-[Serializable]
+[System.Serializable]
 public class Group
 {
     public string Name;
