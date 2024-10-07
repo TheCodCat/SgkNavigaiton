@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System;
 using ClientSamgkOutputResponse.Interfaces.Groups;
 using ClientSamgkOutputResponse.Interfaces.Schedule;
-using FuzzySharp;
+using System.Linq;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -16,9 +16,11 @@ public class ScheduleController : MonoBehaviour
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
 
-    [SerializeField] private List<Group> _groups;
+    [SerializeField] private List<Group> _allListGroups;
+    [SerializeField] private List<Group> _dropListGroups;
     [SerializeField] private Dropdown _groupsDropdown;
     [SerializeField] private Text _numParsText;
+    [SerializeField] private Text _currentGroupText;
 
     [SerializeField] private AppController _appController;
     [SerializeField] private Navigation _navigation;
@@ -36,7 +38,8 @@ public class ScheduleController : MonoBehaviour
         {
             Debug.Log(group);
             if (group.Course > 4) continue;
-            _groups.Add(new Group((int)group.Id, group.Name));
+            _allListGroups.Add(new Group((int)group.Id, group.Name));
+            _dropListGroups.Add(new Group((int)group.Id, group.Name));
             _groupsDropdown.options.Add(new Dropdown.OptionData(group.Name));
         }
 
@@ -47,7 +50,7 @@ public class ScheduleController : MonoBehaviour
     {
         if(id == 0) return;
 
-        _currentGroup = await _api.Groups.GetGroupAsync(_groups[id].Name);
+        _currentGroup = await _api.Groups.GetGroupAsync(_dropListGroups[id].Name);
         Debug.Log(_currentGroup.Id);
     }
 
@@ -148,31 +151,37 @@ public class ScheduleController : MonoBehaviour
         if(_numberPars < 0) _numberPars = 0;
         GetParsPositionAsync(ChangeNumberPars());
     }
-
+    
     public async void GetNameGroup(string needGroup)
     {
-        if (_groups.Count <= 1) return;
+        if (_dropListGroups.Count <= 1) return;
 
-        if(needGroup.Length > 0)
+        _groupsDropdown.ClearOptions();
+        _dropListGroups.Clear();
+
+        _currentGroupText.text = _allListGroups[0].Name;
+
+        if(!string.IsNullOrEmpty(needGroup))
         {
-            _groupsDropdown.ClearOptions();
-            for (int i = 0; i < _groups.Count; i++)
+            _groupsDropdown.options.Add(new Dropdown.OptionData(_allListGroups[0].Name));
+            _dropListGroups.Add(new Group(_allListGroups[0].Id, _allListGroups[0].Name));
+
+            var obj = _allListGroups.Where(x => x.Name.Contains(needGroup, StringComparison.InvariantCultureIgnoreCase));
+            foreach (var item in obj)
             {
-                int ratio = Fuzz.Ratio(_groups[i].Name,needGroup);
-                if (ratio >= 20)
-                {
-                    Debug.Log($"{ratio} {_groups[i].Name} {needGroup}");
-                    _groupsDropdown.options.Add(new Dropdown.OptionData(_groups[i].Name));
-                }
+                _dropListGroups.Add(item);
+                _groupsDropdown.options.Add(new Dropdown.OptionData(item.Name));
             }
         }
         else
         {
-			for (int i = 0; i < _groups.Count; i++)
+			for (int i = 0; i < _allListGroups.Count; i++)
 			{
-				_groupsDropdown.options.Add(new Dropdown.OptionData(_groups[i].Name));
-			}
+                _dropListGroups.Add(_allListGroups[i]);
+                _groupsDropdown.options.Add(new Dropdown.OptionData(_allListGroups[i].Name));
+            }
 		}
+
         await Task.Yield();
 	}
 }
