@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2958,6 +2957,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &698635594
 GameObject:
   m_ObjectHideFlags: 0
@@ -6181,10 +6181,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153182074034169149, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
-      propertyPath: m_VoxelSize
-      value: 0.06666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153182074034169149, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: cecbcd1e533e7754487b85a8aeb23273, type: 2}
@@ -6194,7 +6190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5271084340231328137, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351667188113317003, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
