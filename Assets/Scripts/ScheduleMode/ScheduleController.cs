@@ -10,13 +10,12 @@ using System.Linq;
 
 public class ScheduleController : MonoBehaviour
 {
-    private DateTime _time;
     ClientSamgkApi _api = new ClientSamgkApi();
     IList<IResultOutGroup> _allGroups;
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
 
-    [SerializeField] private List<Group> _allListGroups;
+    private List<Group> _allListGroups = new List<Group>() {new Group(0, "Группа не выбрана") };
     [SerializeField] private List<Group> _dropListGroups;
     [SerializeField] private Dropdown _groupsDropdown;
     [SerializeField] private Text _numParsText;
@@ -82,37 +81,28 @@ public class ScheduleController : MonoBehaviour
         _numParsText.text = $"{_numberPars + 1}";
         if (_numberPars == 0 || newKorpus)
         {
-            foreach (var kabinet in VarController.Instance.GetKorpus().KabinetList)
-            {
-                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Auditory == kabinet.NameKabinet)
-                {
-                    kabs[0] = VarController.Instance.GetKorpus().KabinetList[1].PositionKabinet.position;
-                    kabs[1] = kabinet.PositionKabinet.position;
-                }
-            }
+            var cab = VarController.Instance.GetKorpus().KabinetList.Where(x => x.NameKabinet == _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Auditory).First();
+
+            kabs[0] = VarController.Instance.GetKorpus().KabinetList[1].PositionKabinet.position;
+            kabs[1] = cab.PositionKabinet.position;
         }
         else
         {
             //первый кабинет
             Debug.Log($"Первая пара в -- {_currentScheduleFromDate.Lessons[_numberPars - 1].Cabs[0].Auditory}");
-			foreach (var first in VarController.Instance.GetKorpus().KabinetList)
-            {
-                if (_currentScheduleFromDate.Lessons[_numberPars - 1].Cabs[0].Auditory == first.NameKabinet)
-                {
-                    Debug.LogError(first.NameKabinet);
-                    kabs[0] = first.PositionKabinet.position; 
-                }
-            }
+
+            var first = VarController.Instance.GetKorpus().KabinetList.Where(x => x.NameKabinet == _currentScheduleFromDate.Lessons[_numberPars - 1].Cabs[0].Auditory).First();
+
+            Debug.LogError(first.NameKabinet);
+            kabs[0] = first.PositionKabinet.position; 
+
             //следующий кабинет
             Debug.Log($"Вторая пара в -- {_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Auditory}");
-            foreach (var last in VarController.Instance.GetKorpus().KabinetList)
-            {
-                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Auditory == last.NameKabinet)
-				{
-                    Debug.LogError(last.NameKabinet);
-				    kabs[1] = last.PositionKabinet.position;
-                }
-            }
+
+            var last = VarController.Instance.GetKorpus().KabinetList.Where(x => x.NameKabinet == _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Auditory).First();
+
+            Debug.LogError(last.NameKabinet);
+			kabs[1] = last.PositionKabinet.position;
         }
         _navigation.Destination(kabs[0], kabs[1]);
     }
@@ -122,16 +112,12 @@ public class ScheduleController : MonoBehaviour
         if (VarController.Instance.GetKorpus().NameKorpus != _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus)
         {
             Debug.Log("Пара в другом кабинете");
-            for (int i = 1; i < VarController.Instance.Campuset.Count; i++)
-            {
-                //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
-                if (_currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus == VarController.Instance.Campuset[i].NameKorpus)
-                {
-                    VarController.Instance.SetKorpus(i);
-                    _appController.SetActiveEtage();
-                    return true;
-                }
-            }
+            //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
+            var campus = VarController.Instance.Campuset.FindIndex(c => c.NameKorpus == _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus);
+
+            VarController.Instance.SetKorpus(campus);
+            _appController.SetActiveEtage();
+            return true;
         }
         return false;
     }

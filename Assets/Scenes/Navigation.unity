@@ -2659,13 +2659,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1025718778}
     m_Modifications:
-    - target: {fileID: 3571505129377357076, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8aa7cb7d3632b104a969a23508bdb1fc, type: 2}
     - target: {fileID: 4385433124041543381, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 29.1
       objectReference: {fileID: 0}
     - target: {fileID: 4385433124041543381, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2709,20 +2705,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4908258878807684669, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5060586220410408695, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
-      propertyPath: m_VoxelSize
-      value: 0.06666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 5060586220410408695, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 6f12ecbd66ab2274fba79fa3a9e6f748, type: 2}
-    - target: {fileID: 5915682432916535168, guid: 47f20f14dc61e1a47b126a2f3a402d6a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f24f648352c79fe4196c8cedeb8d0517, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4894,9 +4878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcd879d8dfc4ec468c2d52dec0e8274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allListGroups:
-  - Name: "\u0413\u0440\u0443\u043F\u043F\u0430 \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u0430"
-    Id: 0
   _dropListGroups:
   - Name: "\u0413\u0440\u0443\u043F\u043F\u0430 \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u0430"
     Id: 0
