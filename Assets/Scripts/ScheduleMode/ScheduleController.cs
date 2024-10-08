@@ -36,7 +36,6 @@ public class ScheduleController : MonoBehaviour
     {
         foreach (var group in resultOut)
         {
-            Debug.Log(group);
             if (group.Course > 4) continue;
             _allListGroups.Add(new Group((int)group.Id, group.Name));
             _dropListGroups.Add(new Group((int)group.Id, group.Name));

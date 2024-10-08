@@ -6180,21 +6180,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4153182074034169149, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: cecbcd1e533e7754487b85a8aeb23273, type: 2}
     - target: {fileID: 5271084340231328137, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
       propertyPath: m_Name
       value: 2Korpus
       objectReference: {fileID: 0}
     - target: {fileID: 5271084340231328137, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8351667188113317003, guid: 6aa156258be7d7b4cb2896f645e75db0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.06
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
