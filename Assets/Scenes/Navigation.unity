@@ -713,6 +713,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 953855094}
   _itemPrefab: {fileID: 9166723635801513924, guid: a50d1ed2040fc174c8f0576af6a92367, type: 3}
+  _inputField: {fileID: 247348655}
+  _dropdown: {fileID: 1220074578}
 --- !u!1 &151741154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,7 +1173,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 247348656}
   m_TextComponent: {fileID: 924564516}
   m_Placeholder: {fileID: 1533678359}
@@ -4844,6 +4846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1169167880}
   - component: {fileID: 1169167881}
+  - component: {fileID: 1169167882}
   m_Layer: 0
   m_Name: SheduleMode
   m_TagString: Untagged
@@ -4884,9 +4887,22 @@ MonoBehaviour:
   _groupsDropdown: {fileID: 1220074578}
   _numParsText: {fileID: 1017995886}
   _currentGroupText: {fileID: 1841322480}
+  _notification: {fileID: 1169167882}
   _appController: {fileID: 559582713}
   _navigation: {fileID: 1222678918}
   _numberPars: 0
+--- !u!114 &1169167882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169167879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47752d41f45911f45a2fca7572654e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177745562
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5215,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1220074579}
   m_Template: {fileID: 1879188578}
   m_CaptionText: {fileID: 1841322480}

@@ -1,16 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance;
     [SerializeField] private RectTransform _content;
     [SerializeField] private GameObject _itemPrefab;
+    [Space()]
+    [SerializeField] private InputField _inputField;
+    [SerializeField] private Dropdown _dropdown;
 
     private void Awake()
     {
         Instance = this;
+    }
+    private void OnEnable()
+    {
+        ScheduleController.OnGetGroups += EnableInputGroup;
+    }
+    private void OnDisable()
+    {
+        ScheduleController.OnGetGroups -= EnableInputGroup;
     }
     public void KabinetPanel(DataKorpus dataKorpus)
     {
@@ -27,5 +39,11 @@ public class UIController : MonoBehaviour
         {
             Destroy(_content.GetChild(i).gameObject);
         }
+    }
+
+    private void EnableInputGroup()
+    {
+        _dropdown.interactable = true;
+        _inputField.interactable = true;
     }
 }

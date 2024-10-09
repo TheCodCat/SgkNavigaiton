@@ -7,28 +7,44 @@ using System;
 using ClientSamgkOutputResponse.Interfaces.Groups;
 using ClientSamgkOutputResponse.Interfaces.Schedule;
 using System.Linq;
+using UnityEngine.Events;
 
 public class ScheduleController : MonoBehaviour
 {
+    public static event UnityAction OnGetGroups;
     ClientSamgkApi _api = new ClientSamgkApi();
     IList<IResultOutGroup> _allGroups;
+    IList<IResultOutGroup> Allgroups 
+    { 
+        get 
+        { 
+            return _allGroups;
+        }
+        set
+        {
+            _allGroups = value;
+            OnGetGroups?.Invoke();
+        } 
+    }
     IResultOutGroup _currentGroup;
     IResultOutScheduleFromDate _currentScheduleFromDate;
 
-    private List<Group> _allListGroups = new List<Group>() {new Group(0, "Группа не выбрана") };
+    private IList<Group> _allListGroups = new List<Group>() { new Group(0, "Группа не выбрана") };
     [SerializeField] private List<Group> _dropListGroups;
     [SerializeField] private Dropdown _groupsDropdown;
     [SerializeField] private Text _numParsText;
     [SerializeField] private Text _currentGroupText;
 
+    [Header("Зависимости")]
+    [SerializeField] private Notification _notification;
     [SerializeField] private AppController _appController;
     [SerializeField] private Navigation _navigation;
     [SerializeField,Range(0,6)] private int _numberPars;
 
     private async void Start()
     {
-		_allGroups = await _api.Groups.GetGroupsAsync();
-		await GetAllGroups(_allGroups);
+        Allgroups = await _api.Groups.GetGroupsAsync();
+		await GetAllGroups(Allgroups);
     }
 
     private async Task GetAllGroups(IList<IResultOutGroup> resultOut)
@@ -36,6 +52,7 @@ public class ScheduleController : MonoBehaviour
         foreach (var group in resultOut)
         {
             if (group.Course > 4) continue;
+
             _allListGroups.Add(new Group((int)group.Id, group.Name));
             _dropListGroups.Add(new Group((int)group.Id, group.Name));
             _groupsDropdown.options.Add(new Dropdown.OptionData(group.Name));
@@ -56,9 +73,10 @@ public class ScheduleController : MonoBehaviour
     {
         _currentScheduleFromDate = await _api.Schedule.GetScheduleAsync(DateTime.Now,_currentGroup);
 
-        if (_currentScheduleFromDate.Lessons.Count == 0)
+        if (_currentScheduleFromDate.Lessons.Count is 0)
         {
             Debug.Log("пар нет");
+            _notification.SendNotification("Сегодня пар нет.");
             return;
         }
 
@@ -111,9 +129,8 @@ public class ScheduleController : MonoBehaviour
     {
         if (VarController.Instance.GetKorpus().NameKorpus != _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus)
         {
-            Debug.Log("Пара в другом кабинете");
-            //Debug.Log(_currentScheduleFromDate.Lessons[0].Cabs[0].Adress);
-            var campus = VarController.Instance.Campuset.FindIndex(c => c.NameKorpus == _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus);
+            //_notification.SendNotification("Пара в другом кабинете");
+            var campus = VarController.Instance.Campuset.FindIndex(c => c?.NameKorpus == _currentScheduleFromDate.Lessons[_numberPars].Cabs[0].Campus);
 
             VarController.Instance.SetKorpus(campus);
             _appController.SetActiveEtage();
