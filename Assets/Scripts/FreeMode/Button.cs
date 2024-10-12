@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class Button : MonoBehaviour
 {
     public static Button instance;
-    [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _panel;
-    bool IsOpenVar = true;
 
     private void Awake()
     {
@@ -16,11 +14,6 @@ public class Button : MonoBehaviour
     public void GetNavigation()
     {
         AppController.Instance.SetPosition();
-    }
-    public void VarPanel()
-    {
-        IsOpenVar = !IsOpenVar;
-        _animator.SetBool("IsOpen",IsOpenVar);
     }
     public void OpenClosePanel()
     {
