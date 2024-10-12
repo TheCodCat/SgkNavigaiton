@@ -11,8 +11,9 @@ public class InputManager : MonoBehaviour
     private InputSystem _inputSystem;
     public static UnityAction<InputAction.CallbackContext> OnPositionTouch;
     public static UnityAction<InputAction.CallbackContext> OnTouch2;
+	public static UnityAction<InputAction.CallbackContext> OnPositionTouchDelta;
 
-    private void Awake()
+	private void Awake()
     {
         _inputSystem = new InputSystem();
         _inputSystem.Enable();
@@ -29,6 +30,7 @@ public class InputManager : MonoBehaviour
     {
         _inputSystem.TouchScreen.PrimaryTouch.performed += ctx => MoveTouch(ctx);
         _inputSystem.TouchScreen.ZoomTouch.performed += ctx => ZoomTouch(ctx);
+        _inputSystem.TouchScreen.PrimaryTouchDelta.performed += ctx => DeltaTouch(ctx);
     }
     private void MoveTouch(InputAction.CallbackContext context)
     {
@@ -38,5 +40,9 @@ public class InputManager : MonoBehaviour
     {
         OnTouch2?.Invoke(context);
     }
+	private void DeltaTouch(InputAction.CallbackContext context)
+	{
+		OnPositionTouchDelta?.Invoke(context);
+	}
 
 }
