@@ -33,7 +33,6 @@ public class ScheduleController : MonoBehaviour
     [SerializeField] private List<Group> _dropListGroups;
     [SerializeField] private Dropdown _groupsDropdown;
     [SerializeField] private Text _numParsText;
-    [SerializeField] private Text _currentGroupText;
 
     [Header("Зависимости")]
     [SerializeField] private Notification _notification;
@@ -156,12 +155,10 @@ public class ScheduleController : MonoBehaviour
     
     public async void GetNameGroup(string needGroup)
     {
-        if (_dropListGroups.Count <= 1) return;
+        if (_dropListGroups.Count < 1) return;
 
         _groupsDropdown.ClearOptions();
         _dropListGroups.Clear();
-
-        _currentGroupText.text = _allListGroups[0].Name;
 
         if(!string.IsNullOrEmpty(needGroup))
         {
@@ -183,6 +180,8 @@ public class ScheduleController : MonoBehaviour
                 _groupsDropdown.options.Add(new Dropdown.OptionData(_allListGroups[i].Name));
             }
 		}
+
+        _groupsDropdown.RefreshShownValue();
 
         await Task.Yield();
 	}
