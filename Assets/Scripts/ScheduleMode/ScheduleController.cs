@@ -185,4 +185,25 @@ public class ScheduleController : MonoBehaviour
 
         await Task.Yield();
 	}
+
+    public async void GetGroupDropdown(string needgroup)
+    {
+        //Debug.Log(needgroup);
+
+        if(needgroup.Count() > 0)
+        {
+            var myGroup = _dropListGroups.Where(g => g.Name.Contains(needgroup, StringComparison.CurrentCultureIgnoreCase));
+            if(myGroup.Count() <= 1)
+            {
+                var indexGroup = _dropListGroups.IndexOf(myGroup.FirstOrDefault());
+
+                _groupsDropdown.SetValueWithoutNotify(indexGroup);
+                _groupsDropdown.onValueChanged?.Invoke(indexGroup);
+            }
+
+            //Debug.Log(indexGroup);
+        }
+
+        await Task.Yield();
+    }
 }
