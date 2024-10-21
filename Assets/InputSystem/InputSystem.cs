@@ -150,11 +150,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_TouchScreen.enabled, "This will cause a leak and performance issues, InputSystem.TouchScreen.Disable() has not been called.");
     }
 
-    ~@InputSystem()
-    {
-        UnityEngine.Debug.Assert(!m_TouchScreen.enabled, "This will cause a leak and performance issues, InputSystem.TouchScreen.Disable() has not been called.");
-    }
-
     public void Dispose()
     {
         UnityEngine.Object.Destroy(asset);

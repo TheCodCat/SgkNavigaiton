@@ -16,14 +16,6 @@ public class UIController : MonoBehaviour
     {
         Instance = this;
     }
-    private void OnEnable()
-    {
-        ScheduleController.OnGetGroups += EnableInputGroup;
-    }
-    private void OnDisable()
-    {
-        ScheduleController.OnGetGroups -= EnableInputGroup;
-    }
     public void KabinetPanel(DataKorpus dataKorpus)
     {
         for (int i = 1; i < dataKorpus.KabinetList.Count; i++)
