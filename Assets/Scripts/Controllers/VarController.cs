@@ -21,8 +21,8 @@ public class VarController : MonoBehaviour
             _dataKorpus.gameObject.SetActive(false);
             _dataKorpus = null;
         }
-        _dataKorpus = _campuset[indexkorpus];
-        _dataKorpus.gameObject.SetActive(true);
+        _dataKorpus = _campuset[indexkorpus] == null ? null : _campuset[indexkorpus];
+        _dataKorpus?.gameObject.SetActive(true);
         return _dataKorpus;
     }
     public DataKorpus GetKorpus()
