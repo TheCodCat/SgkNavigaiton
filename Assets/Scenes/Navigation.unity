@@ -3269,6 +3269,11 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 10, y: 10}
   m_UseGraphicAlpha: 0
+--- !u!4 &704995934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5430894331500281367, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+  m_PrefabInstance: {fileID: 1734100016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721767208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5088,7 +5093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ConfineMode: 1
-  m_BoundingVolume: {fileID: 1129249907}
+  m_BoundingVolume: {fileID: 1734100022}
   m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 0
   m_Damping: 0
@@ -5825,11 +5830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca41769fd621a64aa1aef42e8fb2bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1129249907 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 3445966498611384979, guid: 7921f1fdef364dc4998c8c3d93e39997, type: 3}
-  m_PrefabInstance: {fileID: 1129249904}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141004366
 GameObject:
   m_ObjectHideFlags: 0
@@ -9067,6 +9067,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9181214806299841189, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+      propertyPath: _kabinetList.Array.data[16].PositionKabinet
+      value: 
+      objectReference: {fileID: 704995934}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9088,6 +9092,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca41769fd621a64aa1aef42e8fb2bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1734100022 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2313041941257297497, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+  m_PrefabInstance: {fileID: 1734100016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1735637839
 GameObject:
   m_ObjectHideFlags: 0
