@@ -4,8 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(DataKorpus)),RequireComponent(typeof(SetBounsens)),RequireComponent(typeof(BoxCollider)),RequireComponent(typeof(NavMeshSurface))]
 public class DataKorpus : MonoBehaviour
 {
-    [SerializeField] private List<Kabinet> _kabinetList = new List<Kabinet>();
+    [SerializeField] private List<Cabinet> _kabinetList = new List<Cabinet>();
     [SerializeField] private List<Etage> _etageList = new List<Etage>();
-    public List<Kabinet> KabinetList => _kabinetList;
+    [SerializeField] private string _nameKorpus;
+    public List<Cabinet> KabinetList => _kabinetList;
     public List<Etage> EtageList => _etageList;
+    public string NameKorpus => _nameKorpus;
 }

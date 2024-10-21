@@ -19,14 +19,14 @@ public class KabinetItem : MonoBehaviour
         _indexKabinet = indexKabinet;
         _etage = etage - 1;
 
-        _dataKorpus = AppController.Instance.GetBD();
+        _dataKorpus = VarController.Instance.GetKorpus();
         _newPos.x = _dataKorpus.KabinetList[_indexKabinet].PositionKabinet.position.x;
         _newPos.y = CameraMotor.Instance.CameraCimenachin.transform.position.y;
         _newPos.z = _dataKorpus.KabinetList[_indexKabinet].PositionKabinet.position.z;
     }
     public void GetKabinet()
     {
-        _indexKorpus = AppController.Instance.GetKorpus();
+        _indexKorpus = AppController.Instance.GetKorpusValue();
         AppController.Instance.EtageNavToggle(_etage);
         CameraMotor.Instance.MovomentToPos(new Vector3(_newPos.x, CameraMotor.Instance.CameraCimenachin.transform.position.y, _newPos.z));
         Button.instance.OpenClosePanel();

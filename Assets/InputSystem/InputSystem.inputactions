@@ -25,12 +25,21 @@
                 },
                 {
                     "name": "TouchCount",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "df87f0cc-e899-4ab2-a6dc-a12294f9277c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PrimaryTouchDelta",
+                    "type": "Value",
+                    "id": "33266a68-1a12-4d60-a10b-f23d310c2137",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -64,6 +73,17 @@
                     "processors": "",
                     "groups": "Touthscreen",
                     "action": "TouchCount",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce80bd69-cbba-4185-8ab0-a06a1aef744f",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryTouchDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

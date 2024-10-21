@@ -68,7 +68,7 @@ public class CameraMotor : MonoBehaviour
     }
     private void MoveTouch(InputAction.CallbackContext ctx)
     {
-        if (AppController.Instance.DataKorpus == null) return;
+        if (VarController.Instance.GetKorpus() == null) return;
 
         switch (ctx.ReadValue<TouchState>().phase)
         {
@@ -96,7 +96,7 @@ public class CameraMotor : MonoBehaviour
 
     private void ZoomTouch(InputAction.CallbackContext ctx)
     {
-        if (AppController.Instance.DataKorpus == null) return;
+        if (VarController.Instance.GetKorpus() == null) return;
         switch (ctx.ReadValue<TouchState>().phase)
         {
             case UnityEngine.InputSystem.TouchPhase.Began:
@@ -121,7 +121,7 @@ public class CameraMotor : MonoBehaviour
     {
         _pos2 = ctx.ReadValue<TouchState>().position;
 
-        if (AppController.Instance.DataKorpus == null) return;
+        if (VarController.Instance.GetKorpus() == null) return;
 
         switch (ctx.ReadValue<TouchState>().phase)
         {

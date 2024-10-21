@@ -47,12 +47,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""TouchCount"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""df87f0cc-e899-4ab2-a6dc-a12294f9277c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PrimaryTouchDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""33266a68-1a12-4d60-a10b-f23d310c2137"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -86,6 +95,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Touthscreen"",
                     ""action"": ""TouchCount"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce80bd69-cbba-4185-8ab0-a06a1aef744f"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryTouchDelta"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -122,6 +142,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_TouchScreen_PrimaryTouch = m_TouchScreen.FindAction("PrimaryTouch", throwIfNotFound: true);
         m_TouchScreen_ZoomTouch = m_TouchScreen.FindAction("ZoomTouch", throwIfNotFound: true);
         m_TouchScreen_TouchCount = m_TouchScreen.FindAction("TouchCount", throwIfNotFound: true);
+        m_TouchScreen_PrimaryTouchDelta = m_TouchScreen.FindAction("PrimaryTouchDelta", throwIfNotFound: true);
+    }
+
+    ~@InputSystem()
+    {
+        UnityEngine.Debug.Assert(!m_TouchScreen.enabled, "This will cause a leak and performance issues, InputSystem.TouchScreen.Disable() has not been called.");
     }
 
     ~@InputSystem()
@@ -191,6 +217,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_TouchScreen_PrimaryTouch;
     private readonly InputAction m_TouchScreen_ZoomTouch;
     private readonly InputAction m_TouchScreen_TouchCount;
+    private readonly InputAction m_TouchScreen_PrimaryTouchDelta;
     public struct TouchScreenActions
     {
         private @InputSystem m_Wrapper;
@@ -198,6 +225,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @PrimaryTouch => m_Wrapper.m_TouchScreen_PrimaryTouch;
         public InputAction @ZoomTouch => m_Wrapper.m_TouchScreen_ZoomTouch;
         public InputAction @TouchCount => m_Wrapper.m_TouchScreen_TouchCount;
+        public InputAction @PrimaryTouchDelta => m_Wrapper.m_TouchScreen_PrimaryTouchDelta;
         public InputActionMap Get() { return m_Wrapper.m_TouchScreen; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -216,6 +244,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @TouchCount.started += instance.OnTouchCount;
             @TouchCount.performed += instance.OnTouchCount;
             @TouchCount.canceled += instance.OnTouchCount;
+            @PrimaryTouchDelta.started += instance.OnPrimaryTouchDelta;
+            @PrimaryTouchDelta.performed += instance.OnPrimaryTouchDelta;
+            @PrimaryTouchDelta.canceled += instance.OnPrimaryTouchDelta;
         }
 
         private void UnregisterCallbacks(ITouchScreenActions instance)
@@ -229,6 +260,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @TouchCount.started -= instance.OnTouchCount;
             @TouchCount.performed -= instance.OnTouchCount;
             @TouchCount.canceled -= instance.OnTouchCount;
+            @PrimaryTouchDelta.started -= instance.OnPrimaryTouchDelta;
+            @PrimaryTouchDelta.performed -= instance.OnPrimaryTouchDelta;
+            @PrimaryTouchDelta.canceled -= instance.OnPrimaryTouchDelta;
         }
 
         public void RemoveCallbacks(ITouchScreenActions instance)
@@ -269,5 +303,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPrimaryTouch(InputAction.CallbackContext context);
         void OnZoomTouch(InputAction.CallbackContext context);
         void OnTouchCount(InputAction.CallbackContext context);
+        void OnPrimaryTouchDelta(InputAction.CallbackContext context);
     }
 }
