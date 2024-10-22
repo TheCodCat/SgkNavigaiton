@@ -127,13 +127,9 @@ public class ScheduleController : MonoBehaviour
 
     public async void GetGroupDropdown(string needgroup)
     {
-        //Debug.Log(needgroup);
-
         if(needgroup.Count() > 0)
         {
-            var myGroup = _dropListGroups.FirstOrDefault(g => g.Name.ToLower() == needgroup.ToLower());
-
-            var indexGroup = _dropListGroups.IndexOf(myGroup);
+            int indexGroup = _dropListGroups.IndexOf(_dropListGroups.FirstOrDefault(g => string.Equals(g.Name, needgroup, StringComparison.OrdinalIgnoreCase)));
 
             _groupsDropdown.SetValueWithoutNotify(indexGroup);
             _groupsDropdown.onValueChanged?.Invoke(indexGroup);
