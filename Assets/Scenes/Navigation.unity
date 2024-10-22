@@ -9068,6 +9068,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9181214806299841189, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
+      propertyPath: _kabinetList.Array.data[1].Etage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181214806299841189, guid: a47d1f2c1a538ae4d8a1014e9deb750d, type: 3}
       propertyPath: _kabinetList.Array.data[16].PositionKabinet
       value: 
       objectReference: {fileID: 704995934}

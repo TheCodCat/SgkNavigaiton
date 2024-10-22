@@ -10,6 +10,7 @@ using System.Linq;
 using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
 using Assets.Scripts.Extern;
+using FuzzySharp;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -130,14 +131,12 @@ public class ScheduleController : MonoBehaviour
 
         if(needgroup.Count() > 0)
         {
-            var myGroup = _dropListGroups.Where(g => g.Name.Contains(needgroup, StringComparison.CurrentCultureIgnoreCase));
-            if(myGroup.Count() <= 1)
-            {
-                var indexGroup = _dropListGroups.IndexOf(myGroup.FirstOrDefault());
+            var myGroup = _dropListGroups.FirstOrDefault(g => g.Name.ToLower() == needgroup.ToLower());
 
-                _groupsDropdown.SetValueWithoutNotify(indexGroup);
-                _groupsDropdown.onValueChanged?.Invoke(indexGroup);
-            }
+            var indexGroup = _dropListGroups.IndexOf(myGroup);
+
+            _groupsDropdown.SetValueWithoutNotify(indexGroup);
+            _groupsDropdown.onValueChanged?.Invoke(indexGroup);
         }
 
         await UniTask.Yield();

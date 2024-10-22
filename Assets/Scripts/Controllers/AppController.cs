@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,14 +36,14 @@ public class AppController : MonoBehaviour
     {
         await SetKorpus();
     }
-    public async Task SetKorpus()
+    public async UniTask SetKorpus()
     {
         foreach (var korpus in _varController.Campuset)
         {
             if(korpus is null) _korpus.options.Add(new Dropdown.OptionData(string.Empty));
             else _korpus.options.Add(new Dropdown.OptionData(korpus.NameKorpus));
         }
-        await Task.Yield();
+        await UniTask.Yield();
     }
     public async void KorpusSpawn(int indexkorpus)
     {
@@ -53,7 +53,7 @@ public class AppController : MonoBehaviour
             dataKorpus.transform.SetParent(_korpusParent);
             UIController.Instance.KabinetPanel(_varController.GetKorpus());
         }
-        await Task.Yield ();
+        await UniTask.Yield ();
     }
     public async void SetKabinetToKorpus()
     {
@@ -69,7 +69,7 @@ public class AppController : MonoBehaviour
                 kabinet.options.Add(new Dropdown.OptionData(kabinets.NameKabinet));
             }
         }
-        await Task.Yield();
+        await UniTask.Yield();
     }
 
     public void EtageSpawnToggle(bool IsEtage)
