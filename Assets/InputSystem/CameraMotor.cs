@@ -13,18 +13,19 @@ public class CameraMotor : MonoBehaviour
 {
     public static CameraMotor Instance;
     [Header("общие переменные")]
-    [SerializeField] private Vector2 _oldPos, _pos,_pos2;
-    [SerializeField] private Vector3 _dir, _pos2t;
     [SerializeField] private CinemachineVirtualCamera _cameraCimenachin;
     [SerializeField] private CinemachineConfiner _cinemachineConfiner;
     [SerializeField] private Camera _cam;
     [SerializeField] private float _minSize;
     [SerializeField] private float _maxSize;
     [Header("телефон переменные")]
-    [SerializeField] private float _oldZoomingTouch;
-    [SerializeField] private float _zoomingTouch;
     [SerializeField] private float _koeficientZoom;
+    private float _oldZoomingTouch;
+    private float _zoomingTouch;
+    private Vector2 _oldPos, _pos,_pos2;
+    private Vector3 _dir, _pos2t;
     public CinemachineVirtualCamera CameraCimenachin => _cameraCimenachin;
+    public bool IsStop => _cinemachineConfiner.CameraWasDisplaced(_cameraCimenachin);
 
     public float _rad, _oldrad,_rotate;
     public Vector2 _oldRadial, _radial;
@@ -62,10 +63,12 @@ public class CameraMotor : MonoBehaviour
         var position = _cameraCimenachin.transform.position;
         _cameraCimenachin.transform.position = new Vector3(position.x,newPos.y,position.z);
     }
+
     public void MovomentToPos(Vector3 newPos)
     {
         _cameraCimenachin.transform.position = newPos;
     }
+
     private void MoveTouch(InputAction.CallbackContext ctx)
     {
         if (VarController.Instance.GetKorpus() == null) return;
@@ -82,12 +85,13 @@ public class CameraMotor : MonoBehaviour
             case UnityEngine.InputSystem.TouchPhase.Moved:
                 if (_isUI) return;
                 _pos = ctx.ReadValue<TouchState>().position;
-                if (_cameraCimenachin.transform.position == _cam.transform.position)
+                if (!_cinemachineConfiner.CameraWasDisplaced(_cameraCimenachin))
                 {
                     _dir = _cam.ScreenToWorldPoint(_oldPos) - (_cam.ScreenToWorldPoint(_pos));
-                    _cameraCimenachin.transform.Translate(_dir,Space.World);
+                    _cameraCimenachin.transform.Translate(_dir, Space.World);
                 }
-                else _cameraCimenachin.transform.position = _cam.transform.position;                
+                else
+                    _cameraCimenachin.transform.position = _cam.transform.position;
                 _oldPos = _pos;
 
                 break;
@@ -139,14 +143,5 @@ public class CameraMotor : MonoBehaviour
                 _oldrad = _rad;
                 break;
         }
-    }
-
-   public void ResetPosition()
-    {
-        _cameraCimenachin.transform.position = new Vector3(0,_cameraCimenachin.transform.position.y,0);
-    }
-    public void ResetRotation()
-    {
-        _cameraCimenachin.transform.rotation = Quaternion.Euler(90,0,0);
     }
 }
