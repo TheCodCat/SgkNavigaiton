@@ -10,7 +10,6 @@ using System.Linq;
 using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
 using Assets.Scripts.Extern;
-using FuzzySharp;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -38,15 +37,14 @@ public class ScheduleController : MonoBehaviour
     [SerializeField] private Text _numParsText;
 
     [Header("Зависимости")]
-    [SerializeField] private Notification _notification;
     [SerializeField] private AppController _appController;
     [SerializeField] private Navigation _navigation;
     [SerializeField,Range(0,6)] private int _numberPars;
 
     private async void Start()
     {
-        Allgroups = await _api.Groups.GetGroupsAsync();
-		await GetAllGroups(Allgroups);
+        Allgroups = await _api.Groups.GetGroupsAsync().AsUniTask();
+		await GetAllGroups(Allgroups).AsAsyncUnitUniTask();
     }
 
     private async UniTask GetAllGroups(IList<IResultOutGroup> resultOut)
@@ -65,7 +63,7 @@ public class ScheduleController : MonoBehaviour
     public async void GetGroupList(int id)
     {
         Debug.Log(id);
-        _currentGroup = await _api.Groups.GetGroupAsync(_dropListGroups[id >= 0 ? id : 0].Name);
+        _currentGroup = await _api.Groups.GetGroupAsync(_dropListGroups[id >= 0 ? id : 0].Name).AsUniTask();
         Debug.Log(_currentGroup?.Id);
     }
 
@@ -78,7 +76,6 @@ public class ScheduleController : MonoBehaviour
         if (_currentScheduleFromDate.IsDist())
         {
             Debug.Log("Дистант");
-            _notification.SendNotification("Сегодня дистант.");
             return;
         }
 
