@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Instruction
+    uniqueID: 3284110179
+    locked: 0
