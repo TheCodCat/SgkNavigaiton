@@ -44,6 +44,7 @@ public class ScheduleController : MonoBehaviour
     private async void Start()
     {
         Allgroups = await _api.Groups.GetGroupsAsync().AsUniTask();
+        Debug.Log(Allgroups.Count);
 		await GetAllGroups(Allgroups).AsAsyncUnitUniTask();
     }
 
@@ -76,6 +77,7 @@ public class ScheduleController : MonoBehaviour
         if (_currentScheduleFromDate.IsDist())
         {
             Debug.Log("Дистант");
+            Notification.SendNotification("Сегодня дистант");
             return;
         }
 
