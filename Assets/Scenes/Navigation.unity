@@ -6150,6 +6150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1169167880}
   - component: {fileID: 1169167881}
+  - component: {fileID: 1169167882}
   m_Layer: 0
   m_Name: SheduleMode
   m_TagString: Untagged
@@ -6192,6 +6193,18 @@ MonoBehaviour:
   _appController: {fileID: 559582713}
   _navigation: {fileID: 1222678918}
   _numberPars: 0
+--- !u!114 &1169167882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169167879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6a991cd337268479f9c526e3fcdefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177745562
 GameObject:
   m_ObjectHideFlags: 0
